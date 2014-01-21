@@ -10,7 +10,17 @@
 :set encoding=utf-8
 :set fileencoding=utf-8
 :set fileencodings=iso-2022-jp,euc-jp,utf-8,ucs-2,cp932,sjis
+:set fileformats=unix,dos,mac
 :set clipboard=unnamed
+:set expandtab
+:set tabstop=4
+:set shiftwidth=4
+:set softtabstop=4
+:set autoindent
+:set smartindent
+
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+:set laststatus=2 
 
 if has('vim_starting')
    set nocompatible               " Be iMproved
@@ -41,13 +51,23 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kana/vim-fakeclip.git'
+NeoBundle 'scrooloose/nerdcommenter'
 
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
+let g:neocomplcache_enable_at_startup = 1
+
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
+
 filetype plugin indent on     " Required!
+
+" disable auto comment out 
+autocmd FileType * setlocal formatoptions-=ro
 
 " Brief help
 " :NeoBundleList          - list configured bundles
