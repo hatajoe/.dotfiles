@@ -52,6 +52,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kana/vim-fakeclip.git'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-surround'
 
 syntax enable
 set background=dark
@@ -65,6 +66,8 @@ nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
 filetype plugin indent on     " Required!
+
+nnoremap <silent> ,t :tabe<CR> 
 
 " disable auto comment out 
 autocmd FileType * setlocal formatoptions-=ro
