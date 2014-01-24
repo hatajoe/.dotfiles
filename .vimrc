@@ -1,4 +1,5 @@
 :set viminfo+=n~/.vim/
+:set rtp+=$GOROOT/misc/vim
 :set noswapfile
 :set nobackup
 :set incsearch
@@ -9,7 +10,7 @@
 :set autoindent
 :set encoding=utf-8
 :set fileencoding=utf-8
-:set fileencodings=iso-2022-jp,euc-jp,utf-8,ucs-2,cp932,sjis
+:set fileencodings=utf-8,iso-2022-jp,euc-jp,ucs-2,cp932,sjis
 :set fileformats=unix,dos,mac
 :set clipboard=unnamed
 :set expandtab
@@ -38,7 +39,7 @@ NeoBundle 'Shougo/vimproc'
 
 " Unite
 NeoBundle 'Shougo/unite.vim'
-let g:unite_enable_start_insert = 0
+let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
@@ -72,6 +73,15 @@ nnoremap <silent> ,t :tabe<CR>
 
 " disable auto comment out 
 autocmd FileType * setlocal formatoptions-=ro
+
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+autocmd FileType php set makeprg=php\ -l\ %
+autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endi
+
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
 
 " Brief help
 " :NeoBundleList          - list configured bundles
