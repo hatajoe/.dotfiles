@@ -55,6 +55,12 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kana/vim-fakeclip.git'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'felixge/vim-nodejs-errorformat'
+NeoBundle 'kana/vim-operator-user.vim'
+NeoBundle 'tyru/operator-camelize.vim'
+
+nmap ,C <Plug>(operator-camelize-toggle)
+vmap ,C <Plug>(operator-camelize-toggle)
 
 syntax enable
 set background=dark
@@ -82,6 +88,20 @@ autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else
 
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+
+" Open junk file."{{{
+command! -nargs=0 JunkFile call s:open_junk_file()
+function! s:open_junk_file()
+  let l:junk_dir = $HOME . '/.vim_junk'. strftime('/%Y/%m')
+  if !isdirectory(l:junk_dir)
+    call mkdir(l:junk_dir, 'p')
+  endif
+
+  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d-%H%M%S.'))
+  if l:filename != ''
+    execute 'edit ' . l:filename
+  endif
+endfunction"}}}
 
 " Brief help
 " :NeoBundleList          - list configured bundles
