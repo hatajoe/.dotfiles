@@ -55,3 +55,8 @@ export PATH=~/packer:$PATH
 
 # go env
 export GOPATH=$HOME/dev/go-workspace
+export PATH=$GOPATH/bin:$PATH
+
+# nodeenv
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
