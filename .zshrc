@@ -50,7 +50,10 @@ source $ZSH/oh-my-zsh.sh
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
 alias vi=vim
 
-source ~/perl5/perlbrew/etc/bashrc
+if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
+    source $HOME/perl5/perlbrew/etc/bashrc
+fi
+
 export PATH=~/packer:$PATH
 
 # go env
