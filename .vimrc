@@ -56,7 +56,7 @@ NeoBundle 'kana/vim-fakeclip.git'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'felixge/vim-nodejs-errorformat'
-NeoBundle 'kana/vim-operator-user.vim'
+NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'tyru/operator-camelize.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
 
