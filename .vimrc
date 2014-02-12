@@ -8,15 +8,15 @@
 :set showmode
 :set title
 :set autoindent
-:set encoding=utf-8
-:set fileencoding=utf-8
-:set fileencodings=utf-8,iso-2022-jp,euc-jp,ucs-2,cp932,sjis
-:set fileformats=unix,dos,mac
-:set clipboard=unnamed
+" :set encoding=utf-8
+" :set fileencoding=utf-8
+" :set fileencodings=utf-8,iso-2022-jp,euc-jp,ucs-2,cp932,sjis
+" :set fileformats=unix,dos,mac
+" :set clipboard=unnamed
 :set expandtab
-:set tabstop=4
-:set shiftwidth=4
-:set softtabstop=4
+" :set tabstop=4
+" :set shiftwidth=4
+" :set softtabstop=4
 :set autoindent
 :set smartindent
 
@@ -58,34 +58,43 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'felixge/vim-nodejs-errorformat'
 NeoBundle 'kana/vim-operator-user.vim'
 NeoBundle 'tyru/operator-camelize.vim'
+NeoBundle 'editorconfig/editorconfig-vim'
 
+"" camelize toggle
 nmap ,C <Plug>(operator-camelize-toggle)
 vmap ,C <Plug>(operator-camelize-toggle)
 
+"" solarized
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
+"" neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 
+"" comment toggle
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
 filetype plugin indent on     " Required!
 
+"" tab
 nnoremap <silent> ,t :tabe<CR> 
 
 " disable auto comment out 
 autocmd FileType * setlocal formatoptions-=ro
 
+"" turn off word highlight
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+"" php syntax check
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endi
 
+"" for golang
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
