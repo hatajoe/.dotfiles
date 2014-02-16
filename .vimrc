@@ -80,20 +80,25 @@ autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 au FileType javascript call JavaScriptFold()
 
+NeoBundle 'editorconfig/editorconfig-vim'
 
 filetype plugin indent on     " Required!
 
+"" tab
 nnoremap <silent> ,t :tabe<CR> 
 
 " disable auto comment out 
 autocmd FileType * setlocal formatoptions-=ro
 
+"" turn off word highlight
 set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+"" php syntax check
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endi
 
+"" for golang
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
