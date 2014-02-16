@@ -17,11 +17,24 @@
 :set tabstop=4
 :set shiftwidth=4
 :set softtabstop=4
-:set autoindent
 :set smartindent
 
-:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+"" status
+:set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 :set laststatus=2 
+
+"" tab
+nnoremap <silent> ,t :tabe<CR> 
+
+" disable auto comment out 
+autocmd FileType * setlocal formatoptions-=ro
+
+"" turn off word highlight
+set hlsearch
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+
+"" Neobundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 if has('vim_starting')
    set nocompatible               " Be iMproved
@@ -49,16 +62,16 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ug :<C-u>Unite grep<CR>
 
+NeoBundle 'Shougo/vimfiler'
+
+NeoBundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
+
 NeoBundle 'altercation/vim-colors-solarized'
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
-
-NeoBundle 'Shougo/vimfiler'
-
-NeoBundle 'Shougo/neocomplcache'
-let g:neocomplcache_enable_at_startup = 1
 
 NeoBundle 'kana/vim-fakeclip.git'
 
@@ -82,19 +95,10 @@ au FileType javascript call JavaScriptFold()
 
 NeoBundle 'editorconfig/editorconfig-vim'
 
-filetype plugin indent on     " Required!
+"" Neobundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"" tab
-nnoremap <silent> ,t :tabe<CR> 
 
-" disable auto comment out 
-autocmd FileType * setlocal formatoptions-=ro
-
-"" turn off word highlight
-set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
-"" php syntax check
+"" for php
 autocmd FileType php set makeprg=php\ -l\ %
 autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endi
 
@@ -115,6 +119,8 @@ function! s:open_junk_file()
     execute 'edit ' . l:filename
   endif
 endfunction"}}}
+
+filetype plugin indent on     " Required!
 
 " Brief help
 " :NeoBundleList          - list configured bundles
