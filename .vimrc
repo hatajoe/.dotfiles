@@ -89,6 +89,11 @@ vmap ,C <Plug>(operator-camelize-toggle)
 
 NeoBundle 'moll/vim-node.git'
 autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
+autocmd User Node
+  \ if &filetype == "javascript" |
+  \   nmap <buffer> <C-w>f <Plug>NodeVSplitGotoFile |
+  \   nmap <buffer> <C-w><C-f> <Plug>NodeVSplitGotoFile |
+  \ endif
 
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 au FileType javascript call JavaScriptFold()
