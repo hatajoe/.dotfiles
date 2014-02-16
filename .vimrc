@@ -50,28 +50,36 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> ,ug :<C-u>Unite grep<CR>
 
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'kana/vim-fakeclip.git'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'felixge/vim-nodejs-errorformat'
-NeoBundle 'kana/vim-operator-user.git'
-NeoBundle 'tyru/operator-camelize.vim'
-
-nmap ,C <Plug>(operator-camelize-toggle)
-vmap ,C <Plug>(operator-camelize-toggle)
-
 syntax enable
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
+NeoBundle 'Shougo/vimfiler'
+
+NeoBundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 
+NeoBundle 'kana/vim-fakeclip.git'
+
+NeoBundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
+
+NeoBundle 'tpope/vim-surround'
+
+NeoBundle 'kana/vim-operator-user.git'
+NeoBundle 'tyru/operator-camelize.vim'
+nmap ,C <Plug>(operator-camelize-toggle)
+vmap ,C <Plug>(operator-camelize-toggle)
+
+NeoBundle 'moll/vim-node.git'
+autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
+
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+au FileType javascript call JavaScriptFold()
+
 
 filetype plugin indent on     " Required!
 
