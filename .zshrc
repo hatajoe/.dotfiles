@@ -49,10 +49,14 @@ source $ZSH/oh-my-zsh.sh
 # alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
 alias vi=vim
+alias vgs='vagrant global-status -a'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
+
+# docker
+export DOCKER_HOST=tcp://
 
 export PATH=~/packer:$PATH
 
