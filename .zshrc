@@ -63,3 +63,6 @@ export PATH=$GOPATH/bin:$PATH
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# encode
+export LANG=ja_JP.UTF-8
+
