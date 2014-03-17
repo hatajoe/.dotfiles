@@ -60,6 +60,9 @@ export DOCKER_HOST=tcp://
 
 export PATH=~/packer:$PATH
 
+# php env
+export PATH=/usr/local/Cellar/php55/5.5.9/bin:$PATH
+
 # go env
 export GOPATH=$HOME/dev/go-workspace
 export PATH=$GOPATH/bin:$PATH
