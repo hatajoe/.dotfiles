@@ -94,7 +94,8 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <silent> ,t :tabe<CR> 
 
 "" ツリー表示切り替え
-nnoremap <silent> ,u :NERDTreeToggle<CR> 
+nnoremap <silent> ,o :NERDTreeCWD<CR> 
+nnoremap <silent> ,oo :NERDTreeToggle<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
