@@ -46,8 +46,7 @@ plugins=(git web-search)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-# alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vi=vim
 alias vgs='vagrant global-status -a'
 
@@ -69,6 +68,9 @@ export PATH=$GOPATH/bin:$PATH
 
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# pythonpath
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 # encode
 export LANG=ja_JP.UTF-8
