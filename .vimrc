@@ -58,6 +58,9 @@ syntax enable
 :set statusline=%F%m%r%h%w\ [%{&ff}]\ [%04l,%04v][%p%%]
 :set laststatus=2 
 
+"" 自動再読み込み
+:set autoread
+
 "" 挿入モードに入る時に表示
 :set showmode
 
