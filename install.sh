@@ -3,7 +3,7 @@
 rm ~/.tmux.conf
 rm ~/.zshrc
 rm ~/.vimrc
-rm ~/.weechat
+rm -rf ~/.weechat
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
 ln -s ~/.dotfiles/.vimrc ~/.vimrc
