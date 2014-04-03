@@ -67,6 +67,9 @@ syntax enable
 "" 対応する括弧をハイライト
 :set showmatch
 
+"" 相対行番号表示
+:set relativenumber
+
 "" 自動インデント
 " :set autoindent
 :set smartindent
