@@ -132,3 +132,6 @@ set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
 
+"" python
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+

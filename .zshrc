@@ -48,7 +48,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vi=vim
-alias weechat-curses='env PYTHONPATH=/usr/local/lib/python3.3/site-packages/site-packages env PATH=/usr/local/bin  weechat-curses'
+# alias weechat-curses='env PYTHONPATH=/usr/local/lib/python3.3/site-packages weechat-curses'
 alias vgs='vagrant global-status -a'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
@@ -58,10 +58,8 @@ fi
 # docker
 export DOCKER_HOST=tcp://
 
+# packer
 export PATH=~/packer:$PATH
-
-# php env
-export PATH=/usr/local/Cellar/php55/5.5.9/bin:$PATH
 
 # go env
 export GOPATH=$HOME/dev/go-workspace
@@ -69,10 +67,6 @@ export PATH=$GOPATH/bin:$PATH
 
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# pythonpath
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages
-# export PYTHONPATH=/usr/local/lib/python3.3/site-packages:$PYTHONPATH
 
 # encode
 export LANG=ja_JP.UTF-8

@@ -25,6 +25,8 @@ import time
 import calendar
 import socket
 
+os.environ['PYTHONPATH'] = '/usr/local/lib/python3.3/site-packages'
+
 # TODO:
 # Add desc for script options
 
