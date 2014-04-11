@@ -1,0 +1,12 @@
+[user]
+	name = Yusuke Hatanaka
+	email = arbalestimp@gmail.com
+[core]
+	excludesfile = /Users/hatajoe/.gitignore
+	quotepath = false
+	editor = vim
+	preloadindex = true
+[diff]
+    patience=true
+    histogram=true
+
