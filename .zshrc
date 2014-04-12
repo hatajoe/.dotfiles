@@ -61,6 +61,9 @@ export DOCKER_HOST=tcp://
 # packer
 export PATH=~/packer:$PATH
 
+# php env
+export PATH=$HOME/.composer/vendor/bin:$PATH
+
 # go env
 export GOPATH=$HOME/dev/go-workspace
 export PATH=$GOPATH/bin:$PATH
