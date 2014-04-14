@@ -10,3 +10,12 @@
     patience=true
     histogram=true
 
+[alias]
+	cm = commit
+	co = checkout
+	ac = !git add -A && git commit
+	st = status -sb
+[help]
+	autocorrect = 1
+[color]
+	ui = 1
