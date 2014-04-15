@@ -90,6 +90,8 @@ syntax enable
 "" 自動でコメントアウトされちゃうのやめる 
 autocmd FileType * setlocal formatoptions-=ro
 
+
+
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 "" Esc連打でワードハイライトをオフにする
@@ -118,6 +120,24 @@ function! s:open_junk_file()
     execute 'edit ' . l:filename
   endif
 endfunction"}}}
+
+"" eclim
+"" let g:EclimCompletionMethod = 'omnifunc'
+"" nnoremap <silent> <buffer> <cr> :PhpSearchContext<cr>
+"" 
+"" command! -nargs=0 XPhpSearchClass call s:php_search_pattern('class')
+"" command! -nargs=0 XPhpSearchFunction call s:php_search_pattern('function')
+"" command! -nargs=0 XPhpSearchField call s:php_search_pattern('field')
+"" function! s:php_search_pattern(type) abort
+""     let l:pattern = input('pattern: ')
+""     if l:pattern != ''
+""         execute 'PhpSearch -p' l:pattern '-t' a:type '-s project'
+""     endif
+"" endfunction"}}}
+"" 
+"" nnoremap <silent> <buffer> ,sc :XPhpSearchClass<cr>
+"" nnoremap <silent> <buffer> ,sf :XPhpSearchFunction<cr>
+"" nnoremap <silent> <buffer> ,sm :XPhpSearchField<cr>
 
 "" for php
 autocmd FileType php set makeprg=php\ -l\ %

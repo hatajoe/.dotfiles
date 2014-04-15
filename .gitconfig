@@ -15,7 +15,10 @@
 	co = checkout
 	ac = !git add -A && git commit
 	st = status -sb
+	ctags = !.git/hooks/ctags
 [help]
 	autocorrect = 1
 [color]
 	ui = 1
+[init]
+	templatedir = ~/.git_template
