@@ -17,6 +17,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
 
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
@@ -89,8 +90,6 @@ syntax enable
 
 "" 自動でコメントアウトされちゃうのやめる 
 autocmd FileType * setlocal formatoptions-=ro
-
-
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
