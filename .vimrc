@@ -17,6 +17,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
 
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
@@ -66,9 +67,6 @@ syntax enable
 
 "" 対応する括弧をハイライト
 :set showmatch
-
-"" 相対行番号表示
-:set relativenumber
 
 "" 自動インデント
 " :set autoindent

@@ -6,6 +6,7 @@
         "pdepend/pdepend" : "*",
         "phpmd/phpmd" : "*",
         "sebastian/phpcpd": "*",
-        "theseer/phpdox": "*"
+        "theseer/phpdox": "0.6.5"
     }
 }
+
