@@ -126,9 +126,12 @@ exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
 "" solaraized設定
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_hitrail=1
+let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors=256
 
 "" python
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
