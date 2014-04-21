@@ -9,7 +9,6 @@
 [diff]
     patience=true
     histogram=true
-
 [alias]
 	cm = commit
 	co = checkout
@@ -22,3 +21,11 @@
 	ui = 1
 [init]
 	templatedir = ~/.git_template
+[branch "master"]
+	rebase = true
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
+[merge]
+	ff = false

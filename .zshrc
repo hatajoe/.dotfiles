@@ -13,7 +13,7 @@ ZSH_THEME="cloud"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -31,7 +31,7 @@ DISABLE_AUTO_TITLE="true"
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -48,7 +48,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vi=vim
-# alias weechat-curses='env PYTHONPATH=/usr/local/lib/python3.3/site-packages weechat-curses'
 alias vgs='vagrant global-status -a'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
