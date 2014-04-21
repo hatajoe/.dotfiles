@@ -19,7 +19,9 @@ export PATH=~/packer:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # rbenv
-eval "$(rbenv init -)"
+if [ -e /usr/local/bin/rbenv ]; then
+    eval "$(rbenv init -)"
+fi
 
 # go env
 export GOPATH=$HOME/dev/go-workspace

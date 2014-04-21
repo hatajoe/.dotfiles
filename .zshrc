@@ -46,6 +46,8 @@ plugins=(git git-flow web-search)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vi=vim
 alias vgs='vagrant global-status -a'

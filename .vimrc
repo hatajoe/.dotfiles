@@ -15,9 +15,9 @@ Plugin 'gmarik/vundle'
 " Keep Plugin commands between here and filetype plugin indent on.
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'tpope/vim-fugitive'
 
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
@@ -125,7 +125,7 @@ autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
-"" solaraized設定
+"" solarized設定
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_hitrail=1
@@ -133,6 +133,17 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
-"" python
+" lightline.vim
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"\u2b64":""}',
+      \ },
+      \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+      \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+      \ }
+
+"" YouCompleteMe
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+
 
