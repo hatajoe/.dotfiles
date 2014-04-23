@@ -23,5 +23,5 @@ ln -s ~/.dotfiles/.tigrc ~/.tigrc
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
 ln -s ~/.dotfiles/.git-prompt.sh ~/.git-prompt.sh
-ln -s ~/.dotfiles/.confg/powerline ~/.config/powerline
+ln -s ~/.dotfiles/.config/powerline ~/.config/powerline
 
