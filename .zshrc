@@ -46,7 +46,7 @@ plugins=(git git-flow web-search)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-PROMPT="$PROMPT"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim -u $HOME/.vimrc "$@"'
 alias vi=vim
@@ -71,6 +71,9 @@ export PATH=$GOPATH/bin:$PATH
 
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# python env
+# export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
 # encode
 export LANG=ja_JP.UTF-8

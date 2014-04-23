@@ -1,4 +1,4 @@
-"" Vundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" Vundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -15,7 +15,7 @@ Plugin 'gmarik/vundle'
 " Keep Plugin commands between here and filetype plugin indent on.
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'itchyny/lightline.vim'
+Plugin 'fweep/vim-tabber'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 
@@ -98,8 +98,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <silent> ,t :tabe<CR> 
 
 "" ツリー表示切り替え
-nnoremap <silent> ,o :NERDTreeCWD<CR> 
-nnoremap <silent> ,oo :NERDTreeToggle<CR> 
+nnoremap <silent> ,o :NERDTreeToggle<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
@@ -133,17 +132,14 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
-" lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"\u2b64":""}',
-      \ },
-      \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-      \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
-      \ }
-
 "" YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_path_to_python_interpreter='/usr/bin/python'
+let g:ycm_collect_identifiers_from_tags_files=0
+"" let g:ycm_auto_trigger=0
 
+"" powerline
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+
+"" vim-tabber
+set tabline=%!tabber#TabLine()
 
