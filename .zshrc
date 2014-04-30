@@ -92,5 +92,21 @@ if exists percol; then
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
+    function search-junk-by-percol(){
+        DOCUMENT_DIR="\
+            $HOME/.vim/tmp/junk"
+        BUFFER=$(echo $DOCUMENT_DIR | xargs find | \
+            grep -E "\.(txt|php|sql|md)$" | percol --match-method regex)
+        if [ $? -eq 0 ]; then
+            CURSOR=$#BUFFER
+            zle -R -c               # refresh
+        fi
+    }
+
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+
+    zle -N search-junk-by-percol
+    bindkey '^O' search-junk-by-percol
 fi
 
