@@ -12,6 +12,8 @@ rm ~/.gitconfig
 rm ~/.git-completion.bash
 rm ~/.git-prompt.sh
 rm -rf ~/.config/powerline
+rm -rf ~/.percol.d
+
 ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
@@ -24,4 +26,5 @@ ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/.git-completion.bash ~/.git-completion.bash
 ln -s ~/.dotfiles/.git-prompt.sh ~/.git-prompt.sh
 ln -s ~/.dotfiles/.config/powerline ~/.config/powerline
+ln -s ~/.dotfiles/.percol.d ~/.percol.d
 

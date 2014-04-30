@@ -4,7 +4,6 @@
 [core]
 	excludesfile = /Users/hatajoe/.gitignore
 	quotepath = false
-	editor = vim
 	preloadindex = true
 [diff]
     patience=true
