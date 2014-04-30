@@ -17,6 +17,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'fweep/vim-tabber'
 Plugin 'scrooloose/nerdtree'
+Plugin 'yegappan/mru'
 Plugin 'Valloric/YouCompleteMe'
 
 filetype plugin indent on     " required
@@ -97,8 +98,8 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 "" 新規タブウィンドウ
 nnoremap <silent> ,t :tabe<CR> 
 
-"" ツリー表示切り替え
-nnoremap <silent> ,o :NERDTreeToggle<CR> 
+"" recent file
+nnoremap <silent> ,r :MRU<CR> 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
