@@ -43,6 +43,7 @@ syntax enable
 :set viminfo+=n~/.vim/
 :set directory=~/.vim/tmp/swp
 :set backupdir=~/.vim/tmp/back
+:set tags+=.git/tags
 
 "" 文字コード、ファルフォーマット
 :set encoding=utf-8
