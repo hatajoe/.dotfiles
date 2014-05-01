@@ -98,6 +98,9 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 "" 新規タブウィンドウ
 nnoremap <silent> ,t :tabe<CR> 
 
+"" NERDTree
+nnoremap <silent> ,o :NERDTreeToggle<CR>
+
 "" recent file
 nnoremap <silent> ,r :MRU<CR> 
 
