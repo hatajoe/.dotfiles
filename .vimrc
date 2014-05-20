@@ -18,6 +18,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'fweep/vim-tabber'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
+Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 
 filetype plugin indent on     " required
@@ -140,7 +141,7 @@ colorscheme solarized
 "" YouCompleteMe
 let g:ycm_path_to_python_interpreter='/usr/bin/python'
 let g:ycm_collect_identifiers_from_tags_files=0
-"" let g:ycm_auto_trigger=0
+let g:ycm_auto_trigger=0
 
 "" powerline
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim

@@ -50,6 +50,7 @@ source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
+alias tmux='tmux -2'
 alias vgs='vagrant global-status -a'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
@@ -72,15 +73,26 @@ export PATH=$GOPATH/bin:$PATH
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# rbenv
+if [ -e $HOME/.rbenv ]; then
+    eval "$(rbenv init -)"
+fi
+
 # python env
 # export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
 # encode
 export LANG=ja_JP.UTF-8
 
+# editor
+export EDITOR=vim
+
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT=$HOME/.cocos2d-x-3.0/tools/cocos2d-console/bin
 export PATH=$COCOS_CONSOLE_ROOT:$PATH
+export ANT_ROOT=/usr/local/bin
+export NDK_ROOT=$HOME/.android-ndk-r9d
+export ANDROID_SDK_ROOT=$HOME/.android-sdk-macosx
 
 function exists { which $1 &> /dev/null }
 

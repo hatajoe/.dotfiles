@@ -5,6 +5,7 @@
 	excludesfile = /Users/hatajoe/.gitignore
 	quotepath = false
 	preloadindex = true
+	editor = vim
 [diff]
     patience=true
     histogram=true
