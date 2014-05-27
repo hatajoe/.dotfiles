@@ -15,7 +15,7 @@ Plugin 'gmarik/vundle'
 " Keep Plugin commands between here and filetype plugin indent on.
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'fweep/vim-tabber'
+Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'yegappan/mru'
 Plugin 'tpope/vim-surround'
@@ -143,9 +143,7 @@ let g:ycm_path_to_python_interpreter='/usr/bin/python'
 let g:ycm_collect_identifiers_from_tags_files=0
 let g:ycm_auto_trigger=0
 
-"" powerline
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-
-"" vim-tabber
-set tabline=%!tabber#TabLine()
+"" vim-airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 

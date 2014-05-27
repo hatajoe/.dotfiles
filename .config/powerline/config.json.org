@@ -35,6 +35,17 @@
 			"colorscheme": "default",
 			"theme": "hatajoe"
 		},
+		"vim": {
+			"colorscheme": "default",
+			"theme": "default",
+			"local_themes": {
+				"cmdwin": "cmdwin",
+				"help": "help",
+				"quickfix": "quickfix",
+
+				"powerline.matchers.plugin.nerdtree.nerdtree": "plugin_nerdtree"
+			}
+		},
 		"wm": {
 			"colorscheme": "default",
 			"theme": "default"
