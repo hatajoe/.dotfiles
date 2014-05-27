@@ -17,7 +17,6 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'yegappan/mru'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 
@@ -103,8 +102,9 @@ nnoremap <silent> ,t :tabe<CR>
 "" NERDTree
 nnoremap <silent> ,o :NERDTreeToggle<CR>
 
-"" recent file
-nnoremap <silent> ,r :MRU<CR> 
+"" buffer移動
+nnoremap <silent> ,n :bnext<CR>
+nnoremap <silent> ,p :bprev<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
