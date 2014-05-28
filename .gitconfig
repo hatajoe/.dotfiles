@@ -11,8 +11,8 @@
     show = diff-highlight | less
     diff = diff-highlight | less
 [diff]
-    patience=true
-    histogram=true
+    patience = true
+    histogram = true
 [alias]
 	cm = commit
 	co = checkout
