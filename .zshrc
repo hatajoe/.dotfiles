@@ -41,7 +41,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-flow web-search)
+plugins=(brew git git-flow web-search vagrant capistrano heroku zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -51,7 +51,6 @@ source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.z
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
 alias tmux='tmux -2'
-alias vgs='vagrant global-status -a'
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
