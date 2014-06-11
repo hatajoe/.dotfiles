@@ -5,7 +5,7 @@
 	excludesfile = /Users/hatajoe/.gitignore
 	quotepath = false
 	preloadindex = true
-    editor = vim
+    editor = vim -u NONE --noplugin
 [pager]
     log = diff-highlight | less
     show = diff-highlight | less
