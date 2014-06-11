@@ -56,6 +56,9 @@ if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
 
+# ~/bin
+export PATH=$PATH:~/bin
+
 # docker
 export DOCKER_HOST=tcp://
 
