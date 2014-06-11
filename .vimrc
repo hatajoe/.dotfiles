@@ -4,21 +4,28 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "let path = '~/some/path/here'
 "call vundle#rc(path)
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle'
 " Keep Plugin commands between here and filetype plugin indent on.
+Plugin 'tpope/vim-pathogen'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'Shougo/unite.vim'
+
+Plugin 'kchmck/vim-coffee-script'
 
 filetype plugin indent on     " required
 " To ignore plugin indent changes, instead use:
@@ -86,49 +93,43 @@ syntax enable
 :set ignorecase
 "" 検索語に大文字を含む場合は大文字小文字を区別する
 :set smartcase
+"" 検索結果をハイライト
+:set hlsearch
 
 "" 自動でコメントアウトされちゃうのやめる 
 autocmd FileType * setlocal formatoptions-=ro
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
+" Edit vimrc
+nmap ,v :edit $HOME/.vimrc<CR>
+
 "" Esc連打でワードハイライトをオフにする
-set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "" 新規タブウィンドウ
 nnoremap <silent> ,t :tabe<CR> 
 
-"" NERDTree
-nnoremap <silent> ,o :NERDTreeToggle<CR>
-
 "" buffer移動
 nnoremap <silent> ,n :bnext<CR>
 nnoremap <silent> ,p :bprev<CR>
 
+"" NERDTree
+nnoremap <silent> ,o :NERDTreeToggle<CR>
+
+"" Unite
+nnoremap <silent> ,up :Unite -start-insert file_rec/async:!<cr>
+nnoremap <silent> ,ur :Unite buffer file_mru<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-
-" Open junk file."{{{
-command! -nargs=0 JK call s:open_junk_file()
-function! s:open_junk_file()
-  let l:junk_dir = $HOME . '/.vim/tmp/junk/'. strftime('/%Y/%m')
-  if !isdirectory(l:junk_dir)
-    call mkdir(l:junk_dir, 'p')
-  endif
-
-  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d.'))
-  if l:filename != ''
-    execute 'edit ' . l:filename
-  endif
-endfunction"}}}
-
-"" for php
-autocmd FileType php set makeprg=php\ -l\ %
-autocmd BufWritePost *.php silent make | if len(getqflist()) != 1 | copen | else | cclose | endi
 
 "" for golang
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
+
+"" for coffee
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+autocmd BufWritePost *.coffee silent make!
 
 "" solarized設定
 let g:solarized_termcolors=256
@@ -147,3 +148,23 @@ let g:ycm_auto_trigger=0
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+"" syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+
+"" Unite
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
+let g:unite_source_rec_max_cache_files = 5000
+
+" Open junk file."{{{
+command! -nargs=0 Junk call s:open_junk_file()
+function! s:open_junk_file()
+  let l:junk_dir = $HOME . '/.vim/tmp/junk/'. strftime('/%Y/%m')
+  if !isdirectory(l:junk_dir)
+    call mkdir(l:junk_dir, 'p')
+  endif
+  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d.'))
+  if l:filename != ''
+    execute 'edit ' . l:filename
+  endif
+endfunction"}}}
