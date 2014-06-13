@@ -152,6 +152,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 
+"" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 "" Unite
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
 let g:unite_source_rec_max_cache_files = 5000

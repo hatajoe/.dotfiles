@@ -96,6 +96,8 @@ export ANT_ROOT=/usr/local/bin
 export NDK_ROOT=$HOME/.android-ndk-r9d
 export ANDROID_SDK_ROOT=$HOME/.android-sdk-macosx
 
+setopt hist_ignore_all_dups
+
 function exists { which $1 &> /dev/null }
 
 if exists percol; then
