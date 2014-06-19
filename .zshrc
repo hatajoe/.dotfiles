@@ -57,7 +57,7 @@ if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
 fi
 
 # ~/bin
-export PATH=$PATH:~/bin
+export PATH=~/bin:$PATH
 
 # docker
 export DOCKER_HOST=tcp://
@@ -69,8 +69,7 @@ export PATH=~/packer:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # go env
-export GOPATH=$HOME/dev/go-workspace
-export PATH=$GOPATH/bin:$PATH
+export GOPATH=$HOME
 
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -98,29 +97,29 @@ export ANDROID_SDK_ROOT=$HOME/.android-sdk-macosx
 
 function exists { which $1 &> /dev/null }
 
-if exists percol; then
-    function percol_select_history() {
+if exists peco; then
+    function peco_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
-    function search-junk-by-percol(){
+    function search-junk-by-peco(){
         DOCUMENT_DIR="\
             $HOME/.vim/tmp/junk"
         BUFFER=$(echo $DOCUMENT_DIR | xargs find | \
-            grep -E "\.(txt|php|sql|md)$" | percol --match-method regex)
+            grep -E "\.(txt|php|sql|md)$" | peco)
         if [ $? -eq 0 ]; then
             CURSOR=$#BUFFER
             zle -R -c               # refresh
         fi
     }
 
-    zle -N percol_select_history
-    bindkey '^R' percol_select_history
+    zle -N peco_select_history
+    bindkey '^R' peco_select_history
 
-    zle -N search-junk-by-percol
-    bindkey '^O' search-junk-by-percol
+    zle -N search-junk-by-peco
+    bindkey '^O' search-junk-by-peco
 fi
 
