@@ -24,6 +24,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/unite.vim'
+Plugin 'rizzatti/dash.vim'
 
 Plugin 'kchmck/vim-coffee-script'
 
@@ -124,6 +125,7 @@ nnoremap <silent> ,ur :Unite buffer file_mru<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 "" for golang
+set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 

@@ -17,7 +17,9 @@
 	cm = commit
 	co = checkout
 	ac = !git add -A && git commit
-	st = status -sb
+    st = status -sb
+    rb = rebase
+    pu = !git push origin `git rev-parse --abbrev-ref HEAD`
 	ctags = !.git/hooks/ctags
 [help]
 	autocorrect = 1

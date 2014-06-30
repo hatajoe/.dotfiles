@@ -48,6 +48,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
+alias g=git
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
 alias tmux='tmux -2'
