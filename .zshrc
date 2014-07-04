@@ -41,24 +41,20 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git git-flow hub web-search vagrant capistrano heroku zsh_reload)
+plugins=(brew git git-flow hub vagrant capistrano heroku zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-alias g=git
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vi=vim
-alias tmux='tmux -2'
+# go env
+export GOROOT=`go env GOROOT`
+export GOPATH=$HOME
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
     source $HOME/perl5/perlbrew/etc/bashrc
 fi
-
-# ~/bin
-export PATH=~/bin:$PATH
 
 # docker
 export DOCKER_HOST=tcp://
@@ -69,9 +65,6 @@ export PATH=~/packer:$PATH
 # php env
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
-# go env
-export GOPATH=$HOME
-
 # nodeenv
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -80,21 +73,11 @@ if [ -e $HOME/.rbenv ]; then
     eval "$(rbenv init -)"
 fi
 
-# python env
-# export PATH=$HOME/Library/Python/2.7/bin:$PATH
-
 # encode
 export LANG=ja_JP.UTF-8
 
 # editor
 export EDITOR=vim
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=$HOME/.cocos2d-x-3.0/tools/cocos2d-console/bin
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-export ANT_ROOT=/usr/local/bin
-export NDK_ROOT=$HOME/.android-ndk-r9d
-export ANDROID_SDK_ROOT=$HOME/.android-sdk-macosx
 
 setopt hist_ignore_all_dups
 
@@ -125,4 +108,8 @@ if exists peco; then
     zle -N search-junk-by-peco
     bindkey '^O' search-junk-by-peco
 fi
+
+alias g=git
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vi=vim
 
