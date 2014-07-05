@@ -47,38 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-# go env
-export GOROOT=`go env GOROOT`
-export GOPATH=$HOME
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
-if [ -e $HOME/perl5/perlbrew/etc/bashrc ]; then
-    source $HOME/perl5/perlbrew/etc/bashrc
-fi
-
-# docker
-export DOCKER_HOST=tcp://
-
-# packer
-export PATH=~/packer:$PATH
-
-# php env
-export PATH=$HOME/.composer/vendor/bin:$PATH
-
-# nodeenv
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# rbenv
-if [ -e $HOME/.rbenv ]; then
-    eval "$(rbenv init -)"
-fi
-
-# encode
-export LANG=ja_JP.UTF-8
-
-# editor
-export EDITOR=vim
-
 setopt hist_ignore_all_dups
 
 function exists { which $1 &> /dev/null }
