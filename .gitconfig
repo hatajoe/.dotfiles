@@ -27,3 +27,5 @@
 	ui = 1
 [init]
 	templatedir = ~/.git_template
+[ghq]
+	root = /Users/hatajoe/src

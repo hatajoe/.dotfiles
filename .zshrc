@@ -41,7 +41,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git git-flow hub vagrant capistrano heroku zsh_reload)
+plugins=(brew git git-flow hub docker gem go bundler vagrant capistrano heroku zsh_reload)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,15 +69,35 @@ if exists peco; then
             zle -R -c               # refresh
         fi
     }
+    function peco-src () {
+        local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd ${selected_dir}"
+            zle accept-line
+        fi
+        zle clear-screen
+    }
+    function peco-issue-checkout () {
+        local branch_name=$(gli projects | grep $(git remote -v | grep push | awk {'print $2'} | sed -e "s#ssh://##g" | sed -e "s#/#:#") | awk {'print $1'} | sed -e "s/#//" | xargs gli issues | peco | awk {'print "issue/" $1'} | sed -e "s/#//")
+        if [ -n "$branch_name" ]; then
+            BUFFER="git flow feature start ${branch_name}"
+            zle accept-line
+        fi
+        zle clear-screen
+    }
 
     zle -N peco_select_history
     bindkey '^R' peco_select_history
 
     zle -N search-junk-by-peco
     bindkey '^O' search-junk-by-peco
+
+    zle -N peco-src
+    bindkey '^]' peco-src
+
+    zle -N peco-issue-checkout
+    bindkey '^T' peco-issue-checkout
 fi
 
-alias g=git
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
-

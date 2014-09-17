@@ -18,8 +18,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-dispatch'
+
+Plugin 'nosami/Omnisharp'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'digitaltoad/vim-jade'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -63,6 +68,9 @@ let g:airline#extensions#tabline#enabled = 1
 "" syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
+let g:syntastic_aggregate_errors=1
+let g:syntastic_go_checkers=['go', 'golint']
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 
 "" NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -73,7 +81,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 syntax enable
 
 "" 各種ファイルの保存先指定
-set viminfo+=n~/.vim/
+set viminfo+=n~/.vim/viminfo.txt
 set directory=~/.vim/tmp/swp
 set backupdir=~/.vim/tmp/back
 set undodir=~/.vim/tmp/undo
@@ -129,7 +137,15 @@ autocmd FileType * setlocal formatoptions-=ro
 "" for golang
 set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 set completeopt=menu
+auto BufWritePre *.go Fmt
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+
+"" for csharp
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+let g:syntastic_cs_checkers = ['syntax']
+autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 

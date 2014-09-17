@@ -5,3 +5,4 @@
 .composer/composer.lock
 .composer/vendor
 .composer/cache
+.zshenv
