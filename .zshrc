@@ -77,27 +77,60 @@ if exists peco; then
         fi
         zle clear-screen
     }
-    function peco-issue-checkout () {
-        local branch_name=$(gli projects | grep $(git remote -v | grep push | awk {'print $2'} | sed -e "s#ssh://##g" | sed -e "s#/#:#") | awk {'print $1'} | sed -e "s/#//" | xargs gli issues | peco | awk {'print "issue/" $1'} | sed -e "s/#//")
+    function gli-milestones () {
+        local branch_name=$(gli projects | grep $(git remote -v | grep push | awk {'print $2'}) | awk {'print $1'} | sed -e "s/#//" | xargs gli milestones | peco | awk {'print "milestone/" $1'} | sed -e "s/#//")
         if [ -n "$branch_name" ]; then
             BUFFER="git flow feature start ${branch_name}"
             zle accept-line
         fi
         zle clear-screen
     }
+    function gli-issues () {
+        local branch_name=$(gli projects | grep $(git remote -v | grep push | awk {'print $2'}) | awk {'print $1'} | sed -e "s/#//" | xargs gli issues | peco | awk {'print "issue/" $1'} | sed -e "s/#//")
+        if [ -n "$branch_name" ]; then
+            BUFFER="git checkout -b ${branch_name}"
+            zle accept-line
+        fi
+        zle clear-screen
+    }
+    function peco_delete_history () {
+        timestamps=$(cat ~/.zsh_history | peco | awk {'print $2'} | sed -e 's/\([0-9].\):.*/\1/')
+        arr=${(z)timestamps}
+        if [ -n "$timestamps" ]; then
+            BUFFER=''
+            for i in $arr; do
+                if [ $i != ";" ]; then
+                    BUFFER="LANG=C LC_CTYPE=C sed -i '' '/${i}/d' ~/.zsh_history; ${BUFFER}"
+                fi
+            done
+            zle accept-line
+            fc -R
+        fi
+    }
 
     zle -N peco_select_history
     bindkey '^R' peco_select_history
+
+    zle -N peco_delete_history
+    bindkey '^U' peco_delete_history
 
     zle -N search-junk-by-peco
     bindkey '^O' search-junk-by-peco
 
     zle -N peco-src
     bindkey '^]' peco-src
-
-    zle -N peco-issue-checkout
-    bindkey '^T' peco-issue-checkout
+    
+    zle -N gli-milestones
+    bindkey '^[m' gli-milestones
+    
+    zle -N gli-issues
+    bindkey '^[i' gli-issues
 fi
+
+docker-enter() {
+    boot2docker ssh '[ -f /var/lib/boot2docker/nsenter ] || docker run --rm -v /var/lib/boot2docker/:/target jpetazzo/nsenter'
+    boot2docker ssh -t sudo /var/lib/boot2docker/docker-enter "$@"
+}
 
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
