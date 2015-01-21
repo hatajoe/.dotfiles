@@ -1,8 +1,1 @@
-.weechat/logs
-.weechat/*.log
-.weechat/plugins.conf
-.weechat/script/plugins.xml.gz
-.composer/composer.lock
-.composer/vendor
-.composer/cache
 .zshenv

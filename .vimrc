@@ -15,16 +15,10 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-dispatch'
-
-Plugin 'nosami/Omnisharp'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'digitaltoad/vim-jade'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -61,19 +55,12 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
-"" vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
 "" syntastic
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_go_checkers=['go', 'golint']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-
-"" NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:syntastic_php_checkers=['php']
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -82,9 +69,9 @@ syntax enable
 
 "" 各種ファイルの保存先指定
 set viminfo+=n~/.vim/viminfo.txt
-set directory=~/.vim/tmp/swp
-set backupdir=~/.vim/tmp/back
-set undodir=~/.vim/tmp/undo
+set directory=~/.vim/directory
+set backupdir=~/.vim/backupdir
+set undodir=~/.vim/undodir
 set tags+=.git/tags
 
 "" 文字コード、ファルフォーマット
@@ -142,11 +129,6 @@ set completeopt=menu
 auto BufWritePre *.go Fmt
 autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
-"" for csharp
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-let g:syntastic_cs_checkers = ['syntax']
-autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 " Edit vimrc
@@ -161,22 +143,4 @@ nnoremap <silent> ,t :tabe<CR>
 "" buffer移動
 nnoremap <silent> ,n :bnext<CR>
 nnoremap <silent> ,p :bprev<CR>
-
-"" NERDTree
-nnoremap <silent> ,o :NERDTreeToggle<CR>
-
-"" functions  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-
-" Open junk file."{{{
-command! -nargs=0 Junk call s:open_junk_file()
-function! s:open_junk_file()
-  let l:junk_dir = $HOME . '/.vim/tmp/junk/'. strftime('/%Y/%m')
-  if !isdirectory(l:junk_dir)
-    call mkdir(l:junk_dir, 'p')
-  endif
-  let l:filename = input('Junk Code: ', l:junk_dir.strftime('/%Y-%m-%d.'))
-  if l:filename != ''
-    execute 'edit ' . l:filename
-  endif
-endfunction"}}}
 

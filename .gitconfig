@@ -1,10 +1,10 @@
 [user]
-	name = Yusuke Hatanaka
-	email = arbalestimp@gmail.com
+    name = Yusuke Hatanaka
+    email = arbalestimp@gmail.com
 [core]
-	excludesfile = /Users/hatajoe/.gitignore
-	quotepath = false
-	preloadindex = true
+    excludesfile = /Users/hatajoe/.gitignore
+    quotepath = false
+    preloadindex = true
     editor = vim -u NONE --noplugin
 [pager]
     log = diff-highlight | less
@@ -14,18 +14,18 @@
     patience = true
     histogram = true
 [alias]
-	cm = commit
-	co = checkout
-	ac = !git add -A && git commit
+    cm = commit
+    co = checkout
+    ac = !git add -A && git commit
     st = status -sb
     rb = rebase
     pu = !git push origin `git rev-parse --abbrev-ref HEAD`
-	ctags = !.git/hooks/ctags
+    ctags = !.git/hooks/ctags
 [help]
-	autocorrect = 1
+    autocorrect = 1
 [color]
-	ui = 1
+    ui = 1
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.gittemp
 [ghq]
-	root = /Users/hatajoe/src
+    root = /Users/hatajoe/src

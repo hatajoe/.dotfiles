@@ -59,16 +59,6 @@ if exists peco; then
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
-    function search-junk-by-peco(){
-        DOCUMENT_DIR="\
-            $HOME/.vim/tmp/junk"
-        BUFFER=$(echo $DOCUMENT_DIR | xargs find | \
-            grep -E "\.(txt|php|sql|md)$" | peco)
-        if [ $? -eq 0 ]; then
-            CURSOR=$#BUFFER
-            zle -R -c               # refresh
-        fi
-    }
     function peco-src () {
         local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
         if [ -n "$selected_dir" ]; then
@@ -77,26 +67,10 @@ if exists peco; then
         fi
         zle clear-screen
     }
-    function peco-issue-checkout () {
-        local branch_name=$(gli projects | grep $(git remote -v | grep push | awk {'print $2'} | sed -e "s#ssh://##g" | sed -e "s#/#:#") | awk {'print $1'} | sed -e "s/#//" | xargs gli issues | peco | awk {'print "issue/" $1'} | sed -e "s/#//")
-        if [ -n "$branch_name" ]; then
-            BUFFER="git flow feature start ${branch_name}"
-            zle accept-line
-        fi
-        zle clear-screen
-    }
-
     zle -N peco_select_history
     bindkey '^R' peco_select_history
-
-    zle -N search-junk-by-peco
-    bindkey '^O' search-junk-by-peco
-
     zle -N peco-src
     bindkey '^]' peco-src
-
-    zle -N peco-issue-checkout
-    bindkey '^T' peco-issue-checkout
 fi
 
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
