@@ -2,14 +2,10 @@
     name = Yusuke Hatanaka
     email = arbalestimp@gmail.com
 [core]
-    excludesfile = /Users/hatajoe/.gitignore
+    excludesfile = /home/hatajoe/.gitignore
     quotepath = false
     preloadindex = true
     editor = vim -u NONE --noplugin
-[pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
 [diff]
     patience = true
     histogram = true
@@ -28,4 +24,4 @@
 [init]
     templatedir = ~/.gittemp
 [ghq]
-    root = /Users/hatajoe/src
+    root = /home/hatajoe/src

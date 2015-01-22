@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="cloud"
+ZSH_THEME="dpoggi"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -73,7 +73,6 @@ if exists peco; then
     bindkey '^]' peco-src
 fi
 
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi=vim
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
