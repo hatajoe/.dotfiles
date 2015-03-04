@@ -19,6 +19,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'elzr/vim-json'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
