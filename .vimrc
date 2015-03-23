@@ -20,6 +20,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
+Plugin 'vim-ruby/vim-ruby'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -109,6 +110,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
+au BufNewFile,BufRead *.rb set noexpandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.js set noexpandtab tabstop=2 shiftwidth=2
 
 "" インクリメンタルサーチon
 set incsearch
