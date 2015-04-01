@@ -3,6 +3,7 @@ brew upgrade
 brew install brew-cask
 
 brew install git
+brew install git-flow
 brew install tig
 brew install hg
 brew install bzr
