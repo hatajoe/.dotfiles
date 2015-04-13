@@ -3,6 +3,7 @@ brew upgrade
 brew install brew-cask
 
 brew install git
+brew install git-flow
 brew install tig
 brew install hg
 brew install bzr
@@ -35,6 +36,10 @@ brew tap peco/peco
 brew install peco
 brew tap motemen/ghq
 brew install ghq
+
+brew tap sanemat/font
+brew install Caskroom/cask/xquartz
+brew install ricty
 
 brew cask install google-japanese-ime
 brew cask install dropbox
