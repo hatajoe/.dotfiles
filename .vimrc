@@ -18,9 +18,12 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
+Plugin 'nixprime/cpsm'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-jp/vim-go-extra'
+"" Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -58,11 +61,18 @@ set background=dark
 colorscheme solarized
 
 "" syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq=0
 let g:syntastic_enable_signs=1
-let g:syntastic_aggregate_errors=1
+let g:syntastic_aggregate_errors=0
+let g:syntastic_disabled_filetypes=['go']
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go', 'php']}
 let g:syntastic_go_checkers=['go', 'golint']
 let g:syntastic_php_checkers=['php']
+
+"" ctrlp
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+let g:ctrlp_user_command = 'files -p %s'
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -74,6 +84,7 @@ set viminfo+=n~/.vim/viminfo.txt
 set directory=~/.vim/directory
 set backupdir=~/.vim/backupdir
 set undodir=~/.vim/undodir
+set undofile
 set tags+=.git/tags
 
 "" 文字コード、ファルフォーマット
@@ -125,13 +136,9 @@ set hlsearch
 "" 自動でコメントアウトされちゃうのやめる 
 autocmd FileType * setlocal formatoptions-=ro
 
-"" for golang
-set rtp+=$GOROOT/misc/vim
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+"" 補完表示タイプ
 set completeopt=menu
 auto BufWritePre *.go Fmt
-autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
