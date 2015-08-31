@@ -86,7 +86,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 # zstyle ':prezto:module:prompt' theme 'sorin'
-zstyle ':prezto:module:prompt' theme 'peepcode' '$'
+zstyle ':prezto:module:prompt' theme 'nicoulaj'
 
 #
 # Ruby

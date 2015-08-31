@@ -72,7 +72,7 @@ let g:syntastic_php_checkers=['php']
 
 "" ctrlp
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_user_command = 'files -p %s'
+""let g:ctrlp_user_command = 'files -p %s'
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
