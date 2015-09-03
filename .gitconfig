@@ -14,12 +14,13 @@
     patience = true
     histogram = true
 [alias]
-    cm = commit
     co = checkout
-    ac = !git add -A && git commit
-    st = status -sb
     rb = rebase
-    pu = !git push origin `git rev-parse --abbrev-ref HEAD`
+    pl = pull
+    ps = push
+    br = branch -a
+    st = stash
+    ac = !git add -A && git commit
     ctags = !.git/hooks/ctags
 [help]
     autocorrect = 1
@@ -33,3 +34,7 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+[pull]
+	rebase = preserve
+[push]
+	default = simple
