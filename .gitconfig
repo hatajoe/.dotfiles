@@ -16,6 +16,8 @@
 [alias]
     co = checkout
     rb = rebase
+    pl = pull
+    ps = push
     ctags = !.git/hooks/ctags
 [help]
     autocorrect = 1
