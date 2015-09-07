@@ -18,6 +18,7 @@
     rb = rebase
     pl = pull
     ps = push
+    ac = !git add -A && git commit
     ctags = !.git/hooks/ctags
 [help]
     autocorrect = 1
