@@ -18,6 +18,8 @@
     rb = rebase
     pl = pull
     ps = push
+    br = branch -a
+    st = stash
     ac = !git add -A && git commit
     ctags = !.git/hooks/ctags
 [help]
