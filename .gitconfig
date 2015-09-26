@@ -14,12 +14,14 @@
     patience = true
     histogram = true
 [alias]
+    cm = commit
     co = checkout
     rb = rebase
     pl = pull
     ps = push
     br = branch -a
     st = stash
+    mg = merge
     ac = !git add -A && git commit
     ctags = !.git/hooks/ctags
 [help]
