@@ -22,8 +22,7 @@ Plugin 'nixprime/cpsm'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-jp/vim-go-extra'
-"" Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'fatih/vim-go'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'

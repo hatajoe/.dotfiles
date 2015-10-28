@@ -23,6 +23,7 @@
     st = stash
     mg = merge
     ac = !git add -A && git commit
+    mg = merge
     ctags = !.git/hooks/ctags
 [help]
     autocorrect = 1
