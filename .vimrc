@@ -23,6 +23,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -60,17 +61,24 @@ set background=dark
 colorscheme solarized
 
 "" syntastic
-let g:syntastic_check_on_open=0
-let g:syntastic_check_on_wq=0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=0
-let g:syntastic_disabled_filetypes=['go']
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go', 'php']}
+"" let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go', 'php']}
 let g:syntastic_go_checkers=['go', 'golint']
 let g:syntastic_php_checkers=['php']
 
 "" ctrlp
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+"" tagbar
+nmap <F8> :TagbarToggle<CR>
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -136,7 +144,7 @@ autocmd FileType * setlocal formatoptions-=ro
 
 "" 補完表示タイプ
 set completeopt=menu
-auto BufWritePre *.go Fmt
+auto BufWritePre *.go GoFmt
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
