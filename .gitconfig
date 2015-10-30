@@ -5,7 +5,7 @@
     excludesfile = /Users/hatajoe/.gitignore
     quotepath = false
     preloadindex = true
-    editor = vim -u NONE --noplugin
+	editor = vim -c \"set fenc=utf-8\"
 [pager]
     log = diff-highlight | less
     show = diff-highlight | less
