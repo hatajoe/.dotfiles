@@ -23,7 +23,11 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'fatih/vim-go'
+Plugin 'garyburd/go-explorer'
 Plugin 'majutsushi/tagbar'
+Plugin 'glidenote/memolist.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'terryma/vim-multiple-cursors'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -60,6 +64,14 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
+"" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+
 "" syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -70,15 +82,27 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 let g:syntastic_aggregate_errors=0
-"" let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go', 'php']}
-let g:syntastic_go_checkers=['go', 'golint']
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go']}
+"" let g:syntastic_go_checkers=['go', 'golint']
+let g:syntastic_go_checkers=['go']
 let g:syntastic_php_checkers=['php']
 
 "" ctrlp
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
-"" tagbar
-nmap <F8> :TagbarToggle<CR>
+"" memolist
+let g:memolist_path = "~/.vim/memo"
+nmap ,mf :exe "CtrlP" g:memolist_path<cr><f5>
+nmap ,m :MemoNew<cr>
+
+"" neocomplete
+set completeopt=menu,preview
+let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#omni_patterns')
+    let g:neocomplete#omni_patterns = {}
+endif
+let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
+
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -148,16 +172,22 @@ auto BufWritePre *.go GoFmt
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
+let mapleader = "\<Space>"
+
 " Edit vimrc
-nmap ,v :edit $HOME/.vimrc<CR>
+nmap <Leader>v :edit $HOME/.vimrc<CR>
 
 "" Esc連打でワードハイライトをオフにする
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "" 新規タブウィンドウ
-nnoremap <silent> ,t :tabe<CR> 
+nnoremap <silent> <Leader>t :tabe<CR> 
 
-"" buffer移動
-nnoremap <silent> ,n :bnext<CR>
-nnoremap <silent> ,p :bprev<CR>
+"" tagbar
+nmap <F8> :TagbarToggle<CR>
 
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
