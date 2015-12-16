@@ -16,7 +16,6 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'kchmck/vim-coffee-script'
@@ -28,6 +27,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'glidenote/memolist.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'thinca/vim-quickrun'
+Plugin 'Shougo/vimproc'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -72,20 +73,23 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 
-"" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1
-let g:syntastic_aggregate_errors=0
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go']}
-"" let g:syntastic_go_checkers=['go', 'golint']
-let g:syntastic_go_checkers=['go']
-let g:syntastic_php_checkers=['php']
+"" quickrun
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+\   'runner'    : 'vimproc',
+\   'runner/vimproc/updatetime' : 60,
+\   'outputter' : 'error',
+\   'outputter/error/success' : 'buffer',
+\   'outputter/error/error'   : 'quickfix',
+\   'outputter/buffer/split'  : ':rightbelow 8sp',
+\   'outputter/buffer/close_on_empty' : 1,
+\}
+let g:quickrun_config["gobuild"] = {
+\   'command': 'go',
+\   'exec': '%c build %s',
+\   "errorformat": '%f:%l: %m,%-G%.%#',
+\}
+autocmd BufWritePost *.go :QuickRun gobuild
 
 "" ctrlp
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
@@ -172,7 +176,7 @@ auto BufWritePre *.go GoFmt
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
-let mapleader = "\<Space>"
+let mapleader = "\,"
 
 " Edit vimrc
 nmap <Leader>v :edit $HOME/.vimrc<CR>
@@ -181,7 +185,7 @@ nmap <Leader>v :edit $HOME/.vimrc<CR>
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 "" 新規タブウィンドウ
-nnoremap <silent> <Leader>t :tabe<CR> 
+nnoremap <silent> <Leader>w :tabe<CR> 
 
 "" tagbar
 nmap <F8> :TagbarToggle<CR>
