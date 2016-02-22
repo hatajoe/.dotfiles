@@ -79,15 +79,20 @@ let g:quickrun_config._ = {
 \   'runner'    : 'vimproc',
 \   'runner/vimproc/updatetime' : 60,
 \   'outputter' : 'error',
-\   'outputter/error/success' : 'buffer',
+\   'outputter/error/success' : 'quickfix',
 \   'outputter/error/error'   : 'quickfix',
 \   'outputter/buffer/split'  : ':rightbelow 8sp',
 \   'outputter/buffer/close_on_empty' : 1,
 \}
 let g:quickrun_config["gobuild"] = {
 \   'command': 'go',
-\   'exec': '%c build %s',
+\   'cmdopt' : './...',
+\   'exec': '%c build %o',
 \   "errorformat": '%f:%l: %m,%-G%.%#',
+\}
+let g:quickrun_config["gitctags"] = {
+\   'command': 'git',
+\   'exec': '%c ctags',
 \}
 autocmd BufWritePost *.go :QuickRun gobuild
 
