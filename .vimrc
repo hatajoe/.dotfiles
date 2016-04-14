@@ -160,8 +160,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
-au BufNewFile,BufRead *.rb set noexpandtab tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.js set noexpandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.rb set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.js set expandtab tabstop=2 shiftwidth=2
 
 "" インクリメンタルサーチon
 set incsearch
