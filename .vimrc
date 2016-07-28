@@ -97,7 +97,7 @@ let g:quickrun_config["gitctags"] = {
 autocmd BufWritePost *.go :QuickRun gobuild
 
 "" ctrlp
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+"" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 "" memolist
 let g:memolist_path = "~/.vim/memo"
@@ -194,9 +194,10 @@ nnoremap <silent> <Leader>w :tabe<CR>
 
 "" tagbar
 nmap <F8> :TagbarToggle<CR>
-
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+

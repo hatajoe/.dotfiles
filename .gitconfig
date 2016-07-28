@@ -39,3 +39,6 @@
 	required = true
 [push]
 	default = simple
+[merge "mergepbx"]
+	name = Xcode project files merger
+	driver = mergepbx %O %A %B
