@@ -18,14 +18,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nixprime/cpsm'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'elzr/vim-json'
+Plugin 'chase/vim-ansible-yaml'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'pangloss/vim-javascript'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'majutsushi/tagbar'
 Plugin 'glidenote/memolist.vim'
-Plugin 'Shougo/neocomplete.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thinca/vim-quickrun'
 Plugin 'Shougo/vimproc'
@@ -72,6 +71,10 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'godef'
+
+"" vim-javascript
+let g:javascript_enable_domhtmlcss = 1
 
 "" quickrun
 let g:quickrun_config = get(g:, 'quickrun_config', {})
@@ -96,22 +99,21 @@ let g:quickrun_config["gitctags"] = {
 \}
 autocmd BufWritePost *.go :QuickRun gobuild
 
-"" ctrlp
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-
 "" memolist
 let g:memolist_path = "~/.vim/memo"
 nmap ,mf :exe "CtrlP" g:memolist_path<cr><f5>
 nmap ,m :MemoNew<cr>
 
-"" neocomplete
-set completeopt=menu,preview
-let g:neocomplete#enable_at_startup = 1
-if !exists('g:neocomplete#omni_patterns')
-    let g:neocomplete#omni_patterns = {}
-endif
-let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
-
+"" jq
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq 95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;" . l:arg . "95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;"
+endfunction
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -160,8 +162,9 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0
-au BufNewFile,BufRead *.rb set expandtab tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.js set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.rb set noexpandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.js set noexpandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.jsx set noexpandtab tabstop=2 shiftwidth=2
 
 "" インクリメンタルサーチon
 set incsearch
@@ -177,7 +180,6 @@ autocmd FileType * setlocal formatoptions-=ro
 
 "" 補完表示タイプ
 set completeopt=menu
-auto BufWritePre *.go GoFmt
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
@@ -186,17 +188,17 @@ let mapleader = "\,"
 " Edit vimrc
 nmap <Leader>v :edit $HOME/.vimrc<CR>
 
-"" Esc連打でワードハイライトをオフにする
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
 "" 新規タブウィンドウ
 nnoremap <silent> <Leader>w :tabe<CR> 
 
 "" tagbar
 nmap <F8> :TagbarToggle<CR>
 
+au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+

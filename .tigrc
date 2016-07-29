@@ -15,3 +15,6 @@ set split-view-height = 80%
 
 # 差分の前後の表示行数（diff-context)を指定 
 set diff-context = 6
+
+bind generic <Ctrl-f> scroll-page-down
+bind generic <Ctrl-b> scroll-page-up
