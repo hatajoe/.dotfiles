@@ -115,6 +115,9 @@ function! s:Jq(...)
     execute "%! jq 95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;" . l:arg . "95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;"
 endfunction
 
+"" vimgrep
+autocmd QuickFixCmdPost *grep* cwindow
+
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" シンタックスハイライトをon
