@@ -21,6 +21,7 @@ Plugin 'nixprime/cpsm'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elzr/vim-json'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'majutsushi/tagbar'
@@ -64,6 +65,14 @@ let g:solarized_hitrail=1
 let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
+
+"" jedi
+let g:jedi#auto_initialization = 1
+let g:jedi#goto_command = "gd"
+let g:jedi#usages_command = "<leader>i"
+let g:jedi#rename_command = "<leader>e"
+let g:jedi#popup_on_dot = 1
+autocmd FileType python let b:did_ftplugin = 1
 
 "" vim-go
 let g:go_highlight_functions = 1
@@ -179,6 +188,9 @@ autocmd FileType * setlocal formatoptions-=ro
 set completeopt=menu
 auto BufWritePre *.go GoFmt
 
+"" エスケープでIMEをオフ
+inoremap <ESC> <ESC>:set iminsert=0<CR> 
+
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 let mapleader = "\,"
@@ -200,4 +212,5 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
 
