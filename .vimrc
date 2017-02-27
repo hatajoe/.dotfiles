@@ -72,6 +72,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'godef'
+let g:go_gocode_autobuild = 1
 
 "" vim-javascript
 let g:javascript_enable_domhtmlcss = 1
@@ -198,7 +199,7 @@ nnoremap <silent> <Leader>w :tabe<CR>
 nmap <F8> :TagbarToggle<CR>
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
-au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>r <Plug>(go-referrers)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
