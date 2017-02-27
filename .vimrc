@@ -20,11 +20,11 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'nixprime/cpsm'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'majutsushi/tagbar'
-Plugin 'glidenote/memolist.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thinca/vim-quickrun'
 Plugin 'Shougo/vimproc'
@@ -64,6 +64,17 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
+"" ctrl-p
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+"" jedi
+let g:jedi#auto_initialization = 1
+let g:jedi#goto_command = "gd"
+let g:jedi#usages_command = "<leader>i"
+let g:jedi#rename_command = "<leader>e"
+let g:jedi#popup_on_dot = 1
+autocmd FileType python let b:did_ftplugin = 1
+
 "" vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -99,11 +110,6 @@ let g:quickrun_config["gitctags"] = {
 \   'exec': '%c ctags',
 \}
 autocmd BufWritePost *.go :QuickRun gobuild
-
-"" memolist
-let g:memolist_path = "~/.vim/memo"
-nmap ,mf :exe "CtrlP" g:memolist_path<cr><f5>
-nmap ,m :MemoNew<cr>
 
 "" jq
 command! -nargs=? Jq call s:Jq(<f-args>)
@@ -185,6 +191,9 @@ autocmd FileType * setlocal formatoptions-=ro
 "" 補完表示タイプ
 set completeopt=menu
 
+"" エスケープでIMEをオフ
+inoremap <ESC> <ESC>:set iminsert=0<CR> 
+
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
 let mapleader = "\,"
@@ -205,4 +214,3 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-
