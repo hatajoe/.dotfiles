@@ -17,13 +17,12 @@
     cm = commit
     co = checkout
     rb = rebase
-    pl = pull
+    pl = !git fetch --prune && git pull
     ps = push
     br = branch -a
     st = stash
     mg = merge
     ac = !git add -A && git commit
-    mg = merge
     ctags = !.git/hooks/ctags
     tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
 [help]
