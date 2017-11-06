@@ -25,7 +25,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'fatih/vim-go'
 Plugin 'garyburd/go-explorer'
 Plugin 'majutsushi/tagbar'
-Plugin 'glidenote/memolist.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thinca/vim-quickrun'
 Plugin 'Shougo/vimproc'
@@ -65,6 +64,9 @@ let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
 
+"" ctrl-p
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
 "" jedi
 let g:jedi#auto_initialization = 1
 let g:jedi#goto_command = "gd"
@@ -81,6 +83,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'godef'
+let g:go_gocode_autobuild = 1
 
 "" vim-javascript
 let g:javascript_enable_domhtmlcss = 1
@@ -107,11 +110,6 @@ let g:quickrun_config["gitctags"] = {
 \   'exec': '%c ctags',
 \}
 autocmd BufWritePost *.go :QuickRun gobuild
-
-"" memolist
-let g:memolist_path = "~/.vim/memo"
-nmap ,mf :exe "CtrlP" g:memolist_path<cr><f5>
-nmap ,m :MemoNew<cr>
 
 "" jq
 command! -nargs=? Jq call s:Jq(<f-args>)
@@ -210,7 +208,7 @@ nnoremap <silent> <Leader>w :tabe<CR>
 nmap <F8> :TagbarToggle<CR>
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
-au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>r <Plug>(go-referrers)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)

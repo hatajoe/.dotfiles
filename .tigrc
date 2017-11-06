@@ -18,3 +18,6 @@ set diff-context = 6
 
 bind generic <Ctrl-f> scroll-page-down
 bind generic <Ctrl-b> scroll-page-up
+
+# jump to commit page
+bind generic P @sh -c 'hub browse -- commit/%(commit)'
