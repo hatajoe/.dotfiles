@@ -28,6 +28,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'thinca/vim-quickrun'
 Plugin 'Shougo/vimproc'
+Plugin 'scrooloose/nerdtree'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -206,6 +207,12 @@ nnoremap <silent> <Leader>w :tabe<CR>
 
 "" tagbar
 nmap <F8> :TagbarToggle<CR>
+
+"" NERDTree
+nmap <F7> :NERDTreeToggle<CR>
+
+let g:go_bin_path = '/Users/hatajoe/bin'
+filetype plugin indent on
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <leader>r <Plug>(go-referrers)
