@@ -105,10 +105,15 @@ if exists peco; then
         fi
         zle clear-screen
     }
+    function peco-branch () {
+        git branch | peco | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+    }
     zle -N peco_select_history
     bindkey '^R' peco_select_history
     zle -N peco-src
     bindkey '^]' peco-src
+    zle -N peco-branch
+    bindkey '^\' peco-branch
 fi
 
 alias vi=vim

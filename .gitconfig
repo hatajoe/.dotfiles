@@ -2,7 +2,7 @@
     name = Yusuke Hatanaka
     email = arbalestimp@gmail.com
 [core]
-    excludesfile = /Users/hatajoe/.gitignore
+	excludesfile = /Users/hatajoe/.gitignore_global
     quotepath = false
     preloadindex = true
     commentchar = ^
