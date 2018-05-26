@@ -211,6 +211,9 @@ nmap <F8> :TagbarToggle<CR>
 "" NERDTree
 nmap <F7> :NERDTreeToggle<CR>
 
+" jjで挿入モードから抜ける設定
+inoremap <silent> jj <ESC>
+
 let g:go_bin_path = '/Users/hatajoe/bin'
 filetype plugin indent on
 
