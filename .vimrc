@@ -214,7 +214,7 @@ nmap <F7> :NERDTreeToggle<CR>
 " jjで挿入モードから抜ける設定
 inoremap <silent> jj <ESC>
 
-let g:go_bin_path = '/Users/hatajoe/bin'
+let g:go_bin_path = '/Users/hatajoe/go/bin'
 filetype plugin indent on
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
