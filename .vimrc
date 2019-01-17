@@ -103,7 +103,6 @@ let g:quickrun_config["gobuild"] = {
 \   'command': 'go',
 \   'cmdopt' : './...',
 \   'exec': '%c build %o',
-\   "errorformat": '%f:%l: %m,%-G%.%#',
 \}
 let g:quickrun_config["gitctags"] = {
 \   'command': 'git',
