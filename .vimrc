@@ -191,7 +191,7 @@ autocmd FileType * setlocal formatoptions-=ro
 set completeopt=menu
 
 "" エスケープでIMEをオフ
-inoremap <ESC> <ESC>:set iminsert=0<CR> 
+"" inoremap <ESC> <ESC>:set iminsert=0<CR> 
 
 "" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 
