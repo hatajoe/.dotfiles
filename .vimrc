@@ -124,6 +124,9 @@ endfunction
 "" vimgrep
 autocmd QuickFixCmdPost *grep* cwindow
 
+"" NERDTree
+let NERDTreeShowHidden=1
+
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "" シンタックスハイライトをon
