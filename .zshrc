@@ -1,12 +1,12 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/hatajoe/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="terminalparty"
+ZSH_THEME="imajes"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -108,6 +108,14 @@ if exists peco; then
     function peco-branch () {
         git branch | peco | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
     }
+    lssh () {
+      IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
+      if [ $? -eq 0 -a "${IP}" != "" ]
+      then
+          echo ">>> SSH to ${IP}"
+          ssh ${IP}
+      fi
+    }
     zle -N peco_select_history
     bindkey '^R' peco_select_history
     zle -N peco-src
@@ -116,5 +124,8 @@ if exists peco; then
     bindkey '^\' peco-branch
 fi
 
+alias v=vim
 alias vi=vim
 alias g=git
+alias h=hub
+alias less='less -qR'

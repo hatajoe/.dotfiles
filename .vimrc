@@ -1,4 +1,4 @@
-"" Vundle """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+"" Vundle """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -18,15 +18,25 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'nixprime/cpsm'
-Plugin 'chase/vim-ansible-yaml'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rbenv'
+Plugin 'tpope/vim-bundler'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'thoughtbot/vim-rspec'
 Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'w0rp/ale'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 Plugin 'thinca/vim-quickrun'
 Plugin 'Shougo/vimproc'
-Plugin 'scrooloose/nerdtree'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -65,14 +75,9 @@ colorscheme solarized
 
 "" ctrl-p
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-
-"" jedi
-let g:jedi#auto_initialization = 1
-let g:jedi#goto_command = "gd"
-let g:jedi#usages_command = "<leader>i"
-let g:jedi#rename_command = "<leader>e"
-let g:jedi#popup_on_dot = 1
-autocmd FileType python let b:did_ftplugin = 1
+let g:ctrlp_root_markers = ['.git']
+let g:ctrlp_max_files = 0
+let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|vendor)$'
 
 "" vim-go
 let g:go_highlight_functions = 1
@@ -81,11 +86,26 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
-let g:go_def_mode = 'godef'
+let g:go_def_mode='gopls'
 let g:go_gocode_autobuild = 1
 
 "" vim-javascript
 let g:javascript_enable_domhtmlcss = 1
+let g:ale_linters = {
+\   'go': [],
+\   'javascript': [],
+\   'typescript': [],
+\   'ruby': [],
+\}
+let g:ale_fixers = {
+\   'go': [],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\   'ruby': ['rubocop'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 
 "" quickrun
 let g:quickrun_config = get(g:, 'quickrun_config', {})
@@ -120,11 +140,14 @@ function! s:Jq(...)
     execute "%! jq 95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;" . l:arg . "95fe1a73-e2e2-4737-bea1-a44257c50fc8quot;"
 endfunction
 
-"" vimgrep
-autocmd QuickFixCmdPost *grep* cwindow
+"" vim-rspec
+let g:rspec_command = '!bin/rspec {spec}'
 
-"" NERDTree
-let NERDTreeShowHidden=1
+"" netrw
+let g:netrw_liststyle=1
+
+" set filetypes as typescript.tsx
+" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -157,6 +180,7 @@ set laststatus=2
 
 "" 自動再読み込み
 set autoread
+au CursorHold * checktime
 
 "" 挿入モードに入る時に表示
 set showmode
@@ -165,17 +189,15 @@ set showmode
 set showmatch
 
 "" 自動インデント
-" :set autoindent
 set smartindent
-"" タブで空白入力
-set expandtab
-"" インデント文字数
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0
-au BufNewFile,BufRead *.rb set noexpandtab tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.js set noexpandtab tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.jsx set noexpandtab tabstop=2 shiftwidth=2
+
+"" インデント
+au BufNewFile,BufRead *.go set noexpandtab tabstop=4 shiftwidth=4 softtabstop=0
+au BufNewFile,BufRead *.rb set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.js set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.ts set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.jsx set expandtab tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.tsx set expandtab tabstop=2 shiftwidth=2
 
 "" インクリメンタルサーチon
 set incsearch
@@ -186,36 +208,27 @@ set smartcase
 "" 検索結果をハイライト
 set hlsearch
 
-"" 自動でコメントアウトされちゃうのやめる 
-autocmd FileType * setlocal formatoptions-=ro
+"" 自動でコメントアウトされちゃうのやめる
+"" autocmd FileType * setlocal formatoptions-=ro
 
 "" 補完表示タイプ
 set completeopt=menu
 
-"" エスケープでIMEをオフ
-"" inoremap <ESC> <ESC>:set iminsert=0<CR> 
-
-"" Custom Key Map """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+"" Custom Key Map """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\,"
 
 " Edit vimrc
 nmap <Leader>v :edit $HOME/.vimrc<CR>
+nmap <Leader>re :source $HOME/.vimrc<CR>
 
 "" 新規タブウィンドウ
-nnoremap <silent> <Leader>w :tabe<CR> 
-
-"" tagbar
-nmap <F8> :TagbarToggle<CR>
-
-"" NERDTree
-nmap <F7> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>w :tabe<CR>
 
 " jjで挿入モードから抜ける設定
 inoremap <silent> jj <ESC>
 
-let g:go_bin_path = '/Users/hatajoe/go/bin'
-filetype plugin indent on
+" let g:go_bin_path = '${HOME}/go/bin'
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <leader>r <Plug>(go-referrers)
@@ -224,3 +237,6 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType ruby nmap <Leader>t :call RunCurrentSpecFile()<CR>
+au FileType ruby nmap <Leader>l :call RunLastSpec()<CR>
