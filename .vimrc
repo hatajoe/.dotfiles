@@ -14,29 +14,14 @@ Plugin 'gmarik/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
+
+Plugin 'junegunn/fzf.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'nixprime/cpsm'
-Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rbenv'
-Plugin 'tpope/vim-bundler'
-Plugin 'ngmy/vim-rubocop'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'pangloss/vim-javascript'
-Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'w0rp/ale'
 Plugin 'fatih/vim-go'
-Plugin 'majutsushi/tagbar'
-Plugin 'thinca/vim-quickrun'
-Plugin 'Shougo/vimproc'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'thoughtbot/vim-rspec'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -65,19 +50,21 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-"" solarized設定
+"" fzf
+set rtp+=/usr/local/opt/fzf
+let g:fzf_tags_command = 'git ctags'
+command! -nargs=? Files
+\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -nargs=? Ag
+\ call fzf#vim#ag(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+"" solarized
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_hitrail=1
 let g:solarized_visibility=1
 set background=dark
 colorscheme solarized
-
-"" ctrl-p
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_root_markers = ['.git']
-let g:ctrlp_max_files = 0
-let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|vendor)$'
 
 "" vim-go
 let g:go_highlight_functions = 1
@@ -87,15 +74,16 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
-let g:go_gocode_autobuild = 1
 
 "" vim-javascript
 let g:javascript_enable_domhtmlcss = 1
+
+"" ale
 let g:ale_linters = {
-\   'go': [],
-\   'javascript': [],
-\   'typescript': [],
-\   'ruby': [],
+\   'go': ['gobuild', 'govet'],
+\   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
+\   'ruby': ['rubocop'],
 \}
 let g:ale_fixers = {
 \   'go': [],
@@ -104,30 +92,11 @@ let g:ale_fixers = {
 \   'typescript': ['prettier'],
 \   'ruby': ['rubocop'],
 \}
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_insert_leave = 1
+let g:ale_fix_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 let g:ale_ruby_rubocop_executable = 'bin/rubocop'
-
-"" quickrun
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {
-\   'runner'    : 'vimproc',
-\   'runner/vimproc/updatetime' : 60,
-\   'outputter' : 'error',
-\   'outputter/error/success' : 'quickfix',
-\   'outputter/error/error'   : 'quickfix',
-\   'outputter/buffer/split'  : ':rightbelow 8sp',
-\   'outputter/buffer/close_on_empty' : 1,
-\}
-let g:quickrun_config["gobuild"] = {
-\   'command': 'go',
-\   'cmdopt' : './...',
-\   'exec': '%c build %o',
-\}
-let g:quickrun_config["gitctags"] = {
-\   'command': 'git',
-\   'exec': '%c ctags',
-\}
-autocmd BufWritePost *.go :QuickRun gobuild
 
 "" jq
 command! -nargs=? Jq call s:Jq(<f-args>)
@@ -145,9 +114,9 @@ let g:rspec_command = '!bin/rspec {spec}'
 
 "" netrw
 let g:netrw_liststyle=1
-
-" set filetypes as typescript.tsx
-" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+let g:netrw_banner=0
+let g:netrw_sizestyle="H"
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 
 "" Ordinary """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -178,10 +147,6 @@ set clipboard=unnamed
 set statusline=%F%m%r%h%w\ [%{&ff}]\ [%04l,%04v][%p%%]
 set laststatus=2
 
-"" 自動再読み込み
-set autoread
-au CursorHold * checktime
-
 "" 挿入モードに入る時に表示
 set showmode
 
@@ -207,12 +172,10 @@ set ignorecase
 set smartcase
 "" 検索結果をハイライト
 set hlsearch
-
-"" 自動でコメントアウトされちゃうのやめる
-"" autocmd FileType * setlocal formatoptions-=ro
-
 "" 補完表示タイプ
 set completeopt=menu
+
+set autowrite
 
 "" Custom Key Map """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -225,10 +188,8 @@ nmap <Leader>re :source $HOME/.vimrc<CR>
 "" 新規タブウィンドウ
 nnoremap <silent> <Leader>w :tabe<CR>
 
-" jjで挿入モードから抜ける設定
-inoremap <silent> jj <ESC>
-
-" let g:go_bin_path = '${HOME}/go/bin'
+nnoremap <c-p> :Files<CR>
+nnoremap <c-g> :Ag<SPACE>
 
 au FileType go nmap <Leader>d <Plug>(go-doc)
 au FileType go nmap <leader>r <Plug>(go-referrers)

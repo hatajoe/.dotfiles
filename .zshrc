@@ -84,48 +84,46 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-fpath=(~/.zsh_completions $fpath) 
+fpath=(~/.zsh_completions $fpath)
 autoload -U compinit && compinit
 
 function exists { which $1 &> /dev/null }
 
 if exists peco; then
-    function peco_select_history() {
-        local tac
-        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
-    }
-    function peco-src () {
-        local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
-        if [ -n "$selected_dir" ]; then
-            BUFFER="cd ${selected_dir}"
-            zle accept-line
-        fi
-        zle clear-screen
-    }
-    function peco-branch () {
-        git branch | peco | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
-    }
-    lssh () {
-      IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
-      if [ $? -eq 0 -a "${IP}" != "" ]
-      then
-          echo ">>> SSH to ${IP}"
-          ssh ${IP}
-      fi
-    }
-    zle -N peco_select_history
-    bindkey '^R' peco_select_history
-    zle -N peco-src
-    bindkey '^]' peco-src
-    zle -N peco-branch
-    bindkey '^\' peco-branch
+	lssh () {
+		IP=$(lsec2 $@ | peco | awk -F "\t" '{print $2}')
+		if [ $? -eq 0 -a "${IP}" != "" ]
+		then
+			echo ">>> SSH to ${IP}"
+			ssh ${IP}
+		fi
+	}
+fi
+
+if exists fzf; then
+	function select-history() {
+		BUFFER=$(history -n -r 1 | awk '!a[$0]++' | fzf --no-sort +m --prompt="History > ")
+		CURSOR=$#BUFFER
+	}
+	function select-project () {
+		local selected_dir=$(ghq list --full-path | fzf --no-sort +m --prompt="Project > ")
+		if [ -n "$selected_dir" ]; then
+			BUFFER="cd ${selected_dir}"
+		fi
+		zle accept-line
+	}
+	function select-branch() {
+		git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > "| gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+            	zle accept-line
+	}
+	zle -N select-history
+	bindkey '^r' select-history
+	zle -N select-project
+	bindkey '^]' select-project
+	zle -N select-branch
+	bindkey '^\' select-branch
 fi
 
 alias v=vim
 alias vi=vim
 alias g=git
-alias h=hub
-alias less='less -qR'
