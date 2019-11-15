@@ -71,12 +71,11 @@ set clipboard=unnamed
 "" key maps """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader = "\,"
-
 nnoremap <silent> <Leader>v :edit $HOME/.vimrc<CR>
 nnoremap <silent> <Leader>re :source $HOME/.vimrc<CR>
 nnoremap <silent> <Leader>w :tabe<CR>
 au FileType ruby nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
 
-nnoremap <c-p> :Files<CR>
-nnoremap <c-h> :History<CR>
+nnoremap <silent> <c-p> :Files<CR>
+nnoremap <silent> <c-h> :History<CR>
 nnoremap <c-g> :Ag<SPACE>
