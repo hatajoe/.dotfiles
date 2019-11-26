@@ -1,4 +1,0 @@
-use_go(){
- . $GVM_ROOT/scripts/gvm-default
- gvm use $1
-}

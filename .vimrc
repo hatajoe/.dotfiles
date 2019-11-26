@@ -61,7 +61,6 @@ let g:ale_fixers = {
 \   'ruby': ['rubocop'],
 \}
 
-let g:ale_fix_on_save = 1
 let g:ale_ruby_rubocop_executable = 'bin/rubocop'
 
 "" vim-rspec
@@ -90,6 +89,7 @@ set clipboard=unnamed
 let mapleader = "\,"
 nnoremap <silent> <Leader>v :edit $HOME/.vimrc<CR>
 nnoremap <Leader>re :source $HOME/.vimrc<CR>
+nnoremap <Leader>f :ALEFix<CR>
 
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>

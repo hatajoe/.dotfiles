@@ -1,40 +1,37 @@
 [user]
-    name = Yusuke Hatanaka
-    email = arbalestimp@gmail.com
+	name = Yusuke Hatanaka
+	email = arbalestimp@gmail.com
 [core]
-	excludesfile = /Users/hatajoe/.gitignore_global
-    quotepath = false
-    preloadindex = true
-    commentchar = ^
+	excludesfile = /Users/hatanaka-yusuke/.gitignore_global
+	quotepath = false
+	preloadindex = true
 	editor = vim -c \"set fenc=utf-8\"
 [pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+	branch = false
 [diff]
-    patience = true
-    histogram = true
+	patience = true
+	histogram = true
 [alias]
-    cm = commit
-    co = checkout
-    rb = rebase
-    pl = !git fetch --prune && git pull && git delete-merged-branches
-    ps = push
-    br = branch -a
-    st = stash
-    mg = merge
-    ac = !git add -A && git commit
-    ctags = !.git/hooks/ctags
-    tr = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
-    delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$|deploy-.*$' | xargs -I % git branch -d %
+	cm = commit
+	co = checkout
+	rb = rebase
+	pl = !git fetch --prune && git pull && git delete-merged-branches
+	ps = push
+	br = branch
+	ac = !git add -A && git commit
+	delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$|deploy-.*$' | xargs -I % git branch -d %
 [help]
-    autocorrect = 1
+	autocorrect = 1
 [color]
-    ui = 1
+	ui = 1
 [init]
-    templatedir = ~/.gittemp
+	templatedir = ~/.gittemp
 [ghq]
-    root = /Users/hatajoe/src
+	root = /Users/hatanaka-yusuke/work
+	root = /Users/hatanaka-yusuke/go
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
@@ -48,3 +45,18 @@
 	recurse = true
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+# BEGIN ANSIBLE MANAGED BLOCK
+[credential]
+	helper = osxkeychain
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+	insteadOf = git://github.com/
+	insteadOf = git://git@github.com/]
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = [A-Z0-9]{20}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+# END ANSIBLE MANAGED BLOCK
