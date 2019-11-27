@@ -1,24 +1,8 @@
-# main viewの左端にコミットIDを表示する
 set main-view = id date author commit-title:graph=yes,refs=yes
-# デフォルト
-# set main-view = date author commit-title:graph=yes,refs=yes
 set status-show-untracked-files = yes
-
-# 画面を垂直方向に分割する
-# set vertical-split = yes
-# 横分割に強制する
 set vertical-split = no
-# デフォルト値
-# set vertical-split = auto
-
-# 水平分割したウィンドウの下画面サイズを % で指定（行数指定も可）
 set split-view-height = 80%
-
-# 差分の前後の表示行数（diff-context)を指定 
 set diff-context = 6
 
 bind generic <Ctrl-f> scroll-page-down
 bind generic <Ctrl-b> scroll-page-up
-
-# jump to commit page
-bind generic P @sh -c 'hub browse -- commit/%(commit)'
