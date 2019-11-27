@@ -50,7 +50,7 @@ ZSH_THEME="imajes"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(z)
 
 # User configuration
 
@@ -105,12 +105,14 @@ if exists fzf; then
 		BUFFER=$(history -n -r 1 | awk '!a[$0]++' | fzf --no-sort +m --prompt="History > ")
 		CURSOR=$#BUFFER
 	}
-	function select-project () {
-		local selected_dir=$(ghq list --full-path | fzf --no-sort +m --prompt="Project > ")
-		if [ -n "$selected_dir" ]; then
-			BUFFER="cd ${selected_dir}"
+	function select-directory() {
+		local res=$(z | sort -rn | cut -c 12- | fzf)
+		if [ -n "$res" ]; then
+			BUFFER+="cd $res"
+			zle accept-line
+		else
+			return 1
 		fi
-		zle accept-line
 	}
 	function select-branch() {
 		git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > "| gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
@@ -118,8 +120,8 @@ if exists fzf; then
 	}
 	zle -N select-history
 	bindkey '^r' select-history
-	zle -N select-project
-	bindkey '^]' select-project
+	zle -N select-directory
+	bindkey '^]' select-directory
 	zle -N select-branch
 	bindkey '^\' select-branch
 fi
