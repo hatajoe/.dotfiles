@@ -19,3 +19,5 @@ export PATH=$GOPATH/bin:$PATH
 if [ -e $HOME/.env.secret ] ; then
     source $HOME/.env.secret
 fi
+
+eval "$(direnv hook zsh)"
