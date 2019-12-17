@@ -3,6 +3,9 @@ if [ `uname` = "Darwin" ]; then
 		export PATH="$HOME/.anyenv/bin:$PATH"
 		eval "$(anyenv init - zsh)"
 	fi
+        
+	. /usr/local//etc/bash_completion.d/git-completion.bash
+
 elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 	export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
