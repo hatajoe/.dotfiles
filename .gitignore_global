@@ -1,7 +1,7 @@
 *~
 .DS_Store
 .idea
-.env
+# .env
 .solargraph.yml
 .editorconfig
 .envrc
