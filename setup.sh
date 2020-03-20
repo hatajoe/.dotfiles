@@ -23,6 +23,8 @@ brew install tmuxinator
 brew install direnv
 brew install anyenv
 brew install fzf
+brew install gnu-sed
+brew install az
 
 ln -s -f $PWD/.gitconfig $HOME/.gitconfig
 ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
@@ -36,3 +38,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 mkdir -p ~/.vim/directory
 mkdir -p ~/.vim/backupdir
 mkdir -p ~/.vim/undodir
+
+if [ ! -e ../../altercation ] ; then
+	mkdir ../../altercation/solarized
+	git clone git@github.com:altercation/solarized.git ../../altercation/solarized
+fi
