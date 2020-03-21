@@ -72,6 +72,7 @@ nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
 
+au FileType go,ruby,javascript,javascriptreact,typescript,typescriptreact setlocal omnifunc=lsp#complete
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>
 nnoremap <silent> <Leader>e :LspRename<CR>
