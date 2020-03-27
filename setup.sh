@@ -14,17 +14,18 @@ if [ $? -ne 0 ] ; then
 	fi
 fi
 
-brew install git
-brew install tig
-brew install hub
-brew install vim
-brew install tmux
-brew install tmuxinator
-brew install direnv
-brew install anyenv
-brew install fzf
-brew install gnu-sed
-brew install az
+brew install \
+	git \
+	tig \
+	hub \
+	vim \
+	tmux \
+	tmuxinator \
+	direnv \
+	anyenv \
+	fzf \
+	gnu-sed \
+	az
 
 ln -s -f $PWD/.gitconfig $HOME/.gitconfig
 ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
@@ -39,7 +40,7 @@ mkdir -p ~/.vim/directory
 mkdir -p ~/.vim/backupdir
 mkdir -p ~/.vim/undodir
 
-if [ ! -e ../../altercation ] ; then
+if [ "$(uname)" == 'Darwin' ] || [ ! -e ../../altercation/solarized ] ; then
 	mkdir ../../altercation/solarized
 	git clone git@github.com:altercation/solarized.git ../../altercation/solarized
 fi
