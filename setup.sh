@@ -25,10 +25,12 @@ brew install anyenv
 brew install fzf
 brew install gnu-sed
 brew install az
+brew install jq
 
 ln -s -f $PWD/.gitconfig $HOME/.gitconfig
 ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
 ln -s -f $PWD/.tigrc $HOME/.tigrc
+ln -s -f $PWD/.direnvrc $HOME/.direnvrc
 ln -s -f $PWD/.tmux.conf $HOME/.tmux.conf
 ln -s -f $PWD/.vimrc $HOME/.vimrc
 ln -s -f $PWD/.bash_profile $HOME/.bash_profile

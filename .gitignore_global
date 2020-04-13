@@ -4,4 +4,4 @@
 # .env
 .solargraph.yml
 .editorconfig
-.envrc
+# .envrc
