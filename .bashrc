@@ -5,6 +5,8 @@ if [ `uname` = "Darwin" ]; then
 	fi
         
 	. /usr/local//etc/bash_completion.d/git-completion.bash
+	. /usr/local//etc/bash_completion.d/kubectl
+	. /usr/local//etc/bash_completion.d/helm
 
 elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 	export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
@@ -18,7 +20,7 @@ fi
 eval "$(direnv hook bash)"
 
 exists () {
-    type -a $1 > /dev/null 2>&1
+	type -a $1 > /dev/null 2>&1
 }
 
 if exists fzf; then
@@ -35,12 +37,12 @@ if exists fzf; then
 	}
 
 	fd() {
-	    while true; do
-	        local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-	        local dir="$(printf '%s\n' "${lsd[@]}" | fzf -e)"
-	        [[ ${#dir} != 0 ]] || return 0
-	        cd "$dir" &> /dev/null
-	    done
+		while true; do
+			local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
+			local dir="$(printf '%s\n' "${lsd[@]}" | fzf -e)"
+			[[ ${#dir} != 0 ]] || return 0
+			cd "$dir" &> /dev/null
+		done
 	}
 
 	fb() {
@@ -52,17 +54,11 @@ if exists fzf; then
 	bind -x '"\C-b": fb'
 fi
 
-open-pull-request () {
-    merge_commit=$(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path $1..master) <(git rev-list --first-parent $1..master))
-    if git show $merge_commit | grep -q 'pull request'
-    then
-        pull_request_number=$(git log -1 --format=%B $merge_commit | sed -e 's/^.*#\([0-9]*\).*$/\1/' | head -1)
-        url="`hub browse -u`/pull/${pull_request_number}"
-    fi
-    open $url
-}
-
-alias lssh=lssh
 alias v=vim
 alias vi=vim
+
 alias g=git
+__git_complete g __git_main
+
+alias k=kubectl
+complete -F __start_kubectl k
