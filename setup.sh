@@ -26,7 +26,10 @@ brew install \
 	fzf \
 	gnu-sed \
 	az \
-	jq
+	jq \
+	kubectl \
+	kubectx \
+	helm
 
 ln -s -f $PWD/.gitconfig $HOME/.gitconfig
 ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
