@@ -15,8 +15,8 @@ set t_Co=0
 
 "" fzf
 set rtp+=/usr/local/opt/fzf
-command! -nargs=? Files call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': '--exact'}), <bang>0)
-command! -nargs=? Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--exact'}), <bang>0)
+command! -nargs=? Files call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+command! -nargs=? Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 "" vim-lsp
 let g:lsp_diagnostics_echo_cursor = 1
