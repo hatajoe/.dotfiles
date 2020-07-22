@@ -14,26 +14,12 @@ if [ $? -ne 0 ] ; then
 	fi
 fi
 
-ln -s -f $PWD/.gitconfig $HOME/.gitconfig
-ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
-ln -s -f $PWD/.tigrc $HOME/.tigrc
-ln -s -f $PWD/.direnvrc $HOME/.direnvrc
-ln -s -f $PWD/.tmux.conf $HOME/.tmux.conf
-ln -s -f $PWD/.vimrc $HOME/.vimrc
-ln -s -f $PWD/.bash_profile $HOME/.bash_profile
-ln -s -f $PWD/.bashrc $HOME/.bashrc
-
-wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion.bash
-mod a+x ~/.git-completion.bash
-
-. ~/.bashrc
-
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 	brew install patchelf
 fi
 
 brew install \
-	bash-completion \
+	zsh \
 	git \
 	tig \
 	hub \
@@ -51,6 +37,9 @@ brew install \
 	kubectx \
 	helmfile
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p ~/.vim/directory
 mkdir -p ~/.vim/backupdir
@@ -61,4 +50,13 @@ if [ "$(uname)" == 'Darwin' ] && [ ! -e ../../altercation/solarized ] ; then
 	git clone git@github.com:altercation/solarized.git ../../altercation/
 fi
 
+ln -s -f $PWD/.gitconfig $HOME/.gitconfig
+ln -s -f $PWD/.gitignore_global $HOME/.gitignore_global
+ln -s -f $PWD/.tigrc $HOME/.tigrc
+ln -s -f $PWD/.direnvrc $HOME/.direnvrc
+ln -s -f $PWD/.tmux.conf $HOME/.tmux.conf
+ln -s -f $PWD/.vimrc $HOME/.vimrc
+ln -s -f $PWD/.zshrc $HOME/.zshrc
+ln -s -f $PWD/.zshenv $HOME/.zshenv
 
+source $HOME/.zshrc
