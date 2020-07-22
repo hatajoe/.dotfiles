@@ -31,34 +31,14 @@ if exists fzf; then
 			ssh ${IP}
 		fi
 	}
-
-	fh() {
-		eval $(fc -l 1 | fzf -e +s --tac | sed 's/ *[0-9]* *//')
-	}
-
-	fd() {
-		while true; do
-			local lsd=$(echo ".." && ls -p | grep '/$' | sed 's;/$;;')
-			local dir="$(printf '%s\n' "${lsd[@]}" | fzf -e)"
-			[[ ${#dir} != 0 ]] || return 0
-			cd "$dir" &> /dev/null
-		done
-	}
-
-	fb() {
-		git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > "| gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
-	}
-
-	bind -x '"\C-h": fh'
-	bind -x '"\C-]": fd'
-	bind -x '"\C-b": fb'
 fi
 
 alias v=vim
 alias vi=vim
 
-alias g=git
-__git_complete g __git_main
+alias git=hub
+alias g=hub
+# __git_complete g __git_main
 
 alias k=kubectl
 complete -F __start_kubectl k
