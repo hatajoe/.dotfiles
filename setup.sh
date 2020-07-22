@@ -19,6 +19,7 @@ if [ "$(echo $(uname -s) | cut -c 1-5)" == 'Linux' ]; then
 fi
 
 brew install \
+	openssl \
 	zsh \
 	git \
 	tig \
@@ -36,6 +37,10 @@ brew install \
 	kubectl \
 	kubectx \
 	helmfile
+
+if [ "$(uname)" == 'Darwin' ]; then
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb
+fi
 
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ~/.oh-my-zsh ] ; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

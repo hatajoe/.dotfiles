@@ -25,6 +25,7 @@ export GO111MODULE=auto
 export PATH=$GOPATH/bin:$PATH
 
 eval "$(direnv hook bash)"
+eval "$(hub alias -s)"
 
 if [ -e $HOME/.env.secret ] ; then
     source $HOME/.env.secret

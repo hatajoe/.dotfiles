@@ -125,6 +125,5 @@ fi
 
 alias v=vim
 alias vi=vim
-alias git=hub
-alias g=hub
+alias g=git
 alias k=kubectl
