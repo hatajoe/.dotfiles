@@ -9,12 +9,12 @@ if [ $? -ne 0 ] ; then
 			exit 1
 		fi
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+	elif [ "$(echo $(uname -s) | cut -c 1-5)" == 'Linux' ]; then
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 	fi
 fi
 
-if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+if [ "$(echo $(uname -s) | cut -c 1-5)" == 'Linux' ]; then
 	brew install patchelf
 fi
 
@@ -37,8 +37,11 @@ brew install \
 	kubectx \
 	helmfile
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-chsh -s $(which zsh)
+if [ "$(uname)" == 'Darwin' ] && [ ! -e ~/.oh-my-zsh ] ; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	git clone git@github.com:zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+	chsh -s $(which zsh)
+fi
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir -p ~/.vim/directory
@@ -58,5 +61,3 @@ ln -s -f $PWD/.tmux.conf $HOME/.tmux.conf
 ln -s -f $PWD/.vimrc $HOME/.vimrc
 ln -s -f $PWD/.zshrc $HOME/.zshrc
 ln -s -f $PWD/.zshenv $HOME/.zshenv
-
-source $HOME/.zshrc
