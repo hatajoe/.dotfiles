@@ -9,5 +9,8 @@ export GOPATH=$HOME/go
 export GO111MODULE=auto
 export PATH=$GOPATH/bin:$PATH
 
+. ~/.git-completion.bash
 . ~/.bash_profile.secret
 . ~/.bashrc
+
+[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
