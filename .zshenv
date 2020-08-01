@@ -24,7 +24,7 @@ export GOPATH=$HOME/go
 export GO111MODULE=auto
 export PATH=$GOPATH/bin:$PATH
 
-eval "$(direnv hook bash)"
+eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
 
 if [ -e $HOME/.env.secret ] ; then

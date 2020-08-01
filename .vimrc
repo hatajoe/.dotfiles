@@ -44,6 +44,7 @@ nnoremap <silent> <c-k> :Buffers<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>
+nnoremap <silent> <Leader>a :LspCodeAction<CR>
 nnoremap <silent> <Leader>e :LspRename<CR>
 nnoremap <silent> <Leader>r :LspReferences<CR>
 nnoremap <silent> <Leader>i :LspImplementation<CR>

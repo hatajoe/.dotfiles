@@ -34,9 +34,7 @@ brew install \
 	gnu-sed \
 	az \
 	jq \
-	kubectl \
-	kubectx \
-	helmfile
+	git-secrets
 
 if [ "$(uname)" == 'Darwin' ]; then
 	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb
