@@ -51,6 +51,11 @@ mkdir -p ~/.vim/directory
 mkdir -p ~/.vim/backupdir
 mkdir -p ~/.vim/undodir
 
+if [ ! -e $(anyenv root)/plugins/anyenv-tfenv-init ] ; then
+	mkdir -p $(anyenv root)/plugins
+	git clone https://github.com/rugamaga/anyenv-tfenv-init.git $(anyenv root)/plugins/anyenv-tfenv-init
+fi
+
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ../../altercation/solarized ] ; then
 	mkdir -p ../../altercation
 	git clone git@github.com:altercation/solarized.git ../../altercation/
