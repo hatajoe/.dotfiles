@@ -6,12 +6,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 call plug#end()
 
-syntax off
+syntax on
+set t_Co=0
 
 "" set vim variables """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -31,6 +30,8 @@ set completeopt=menu
 
 set laststatus=2
 set clipboard=unnamed
+set completeopt=menuone
+setlocal omnifunc=lsp#complete
 
 "" key maps """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
