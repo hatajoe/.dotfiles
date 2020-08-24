@@ -4,14 +4,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
-Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
-syntax off
+syntax on
+set t_Co=0
 
 "" set vim variables """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -31,6 +30,10 @@ set completeopt=menu
 
 set laststatus=2
 set clipboard=unnamed
+set completeopt=menuone
+set omnifunc=lsp#complete
+
+set statusline=%F%m\ %=%l:%v\ %{&ff}
 
 "" key maps """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -41,6 +44,8 @@ nnoremap <Leader>re :source $HOME/.vimrc<CR>
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
+nnoremap <c-t> :!tig
+nnoremap <silent> <c-g> :!git brws %<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>
