@@ -34,14 +34,15 @@ brew install \
 	gnu-sed \
 	az \
 	jq \
-	git-secrets \
-	findutils
+	git-secrets
 
 brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
 
 if [ "$(uname)" == 'Darwin' ]; then
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb
+	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb \
+		findutils \
+		reattach-to-user-namespace
 fi
 
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ~/.oh-my-zsh ] ; then
