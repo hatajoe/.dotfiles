@@ -23,6 +23,7 @@ fi
 export GOPATH=$HOME/go
 export GO111MODULE=auto
 export PATH=$GOPATH/bin:$PATH
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
 eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
