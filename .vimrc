@@ -12,6 +12,15 @@ call plug#end()
 syntax on
 set t_Co=0
 
+let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
+
+let g:cwd = getcwd()
+if filereadable(expand(g:cwd.'/.golangci.yml'))
+  let g:lsp_settings = {
+  \  'golangci-lint-langserver': {'initialization_options': {'command': ['golangci-lint', 'run', '-c', g:cwd.'/.golangci.yml', '--out-format', 'json']}}
+  \}
+endif
+
 "" set vim variables """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set viminfo+=n~/.vim/viminfo.txt
