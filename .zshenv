@@ -24,6 +24,7 @@ export GOPATH=$HOME/go
 export GO111MODULE=auto
 export PATH=$GOPATH/bin:$PATH
 export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export AWS_PROFILE=saml
 
 eval "$(direnv hook zsh)"
 eval "$(hub alias -s)"
@@ -31,3 +32,5 @@ eval "$(hub alias -s)"
 if [ -e $HOME/.env.secret ] ; then
     source $HOME/.env.secret
 fi
+
+export FZF_DEFAULT_OPTS='--height 40% --reverse'

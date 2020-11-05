@@ -89,39 +89,36 @@ autoload -U compinit && compinit
 
 function exists { which $1 &> /dev/null }
 
-# if exists fzf; then
-# 	function lssh() {
-# 		IP=$(lsec2 $@ | fzf -e | awk -F "\t" '{print $2}')
-# 		if [ $? -eq 0 -a "${IP}" != "" ]; then
-# 			echo ">>> SSH to ${IP}"
-# 			ssh ${IP}
-# 		fi
-# 	}
-# 
-# 	function select-history() {
-# 		BUFFER=$(history -n -r 1 | awk '!a[$0]++' | fzf -e --no-sort +m --prompt="History > ")
-# 		CURSOR=$#BUFFER
-# 	}
-# 	function select-directory() {
-# 		local res=$(z | sort -rn | cut -c 12- | fzf)
-# 		if [ -n "$res" ]; then
-# 			BUFFER+="cd $res"
-# 			zle accept-line
-# 		else
-# 			return 1
-# 		fi
-# 	}
-# 	function select-branch() {
-# 		git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > "| gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
-#             	zle accept-line
-# 	}
-# 	zle -N select-history
-# 	bindkey '^r' select-history
-# 	zle -N select-directory
-# 	bindkey '^]' select-directory
-# 	zle -N select-branch
-# 	bindkey '^\' select-branch
-# fi
+if exists fzf; then
+	function lssh() {
+		IP=$(lsec2 $@ | fzf -e | awk -F "\t" '{print $2}')
+		if [ $? -eq 0 -a "${IP}" != "" ]; then
+			echo ">>> SSH to ${IP}"
+			ssh ${IP}
+		fi
+	}
+
+	function select-directory() {
+		local res=$(z | sort -rn | cut -c 12- | fzf -e --inline-info)
+		if [ -n "$res" ]; then
+			BUFFER+="cd $res"
+			zle accept-line
+		else
+			return 1
+		fi
+	}
+
+	function select-branch() {
+		# git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > " --info=hidden | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+		git branch | fzf --no-sort +m | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+            	zle accept-line
+	}
+
+	zle -N select-directory
+	bindkey '^]' select-directory
+	zle -N select-branch
+	bindkey '^\' select-branch
+fi
 
 alias v=vim
 alias vi=vim

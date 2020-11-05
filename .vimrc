@@ -1,3 +1,5 @@
+set nocompatible
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'
@@ -35,7 +37,6 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-set completeopt=menu
 
 set laststatus=2
 set clipboard=unnamed
