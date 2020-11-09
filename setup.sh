@@ -61,6 +61,11 @@ if [ ! -e $(anyenv root)/plugins/anyenv-tfenv-init ] ; then
 	git clone https://github.com/rugamaga/anyenv-tfenv-init.git $(anyenv root)/plugins/anyenv-tfenv-init
 fi
 
+if [ ! -e $(anyenv root)/plugins/anyenv-update ] ; then
+	mkdir -p $(anyenv root)/plugins
+	git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
+fi
+
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ../../altercation/solarized ] ; then
 	mkdir -p ../../altercation
 	git clone git@github.com:altercation/solarized.git ../../altercation/
