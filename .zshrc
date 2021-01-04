@@ -124,3 +124,4 @@ alias v=vim
 alias vi=vim
 alias g=git
 alias k=kubectl
+alias tf=terraform

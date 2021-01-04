@@ -34,7 +34,8 @@ brew install \
 	gnu-sed \
 	az \
 	jq \
-	git-secrets
+	git-secrets \
+	tflint
 
 brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
