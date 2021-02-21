@@ -11,8 +11,9 @@ Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
-syntax on
-set t_Co=0
+syntax off
+"" set t_Co=0
+set visualbell t_vb=
 
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
 
@@ -50,12 +51,13 @@ set statusline=%F%m\ %=%l:%v\ %{&ff}
 let mapleader = "\,"
 nnoremap <silent> <Leader>v :edit $HOME/.vimrc<CR>
 nnoremap <Leader>re :source $HOME/.vimrc<CR>
+nnoremap <Leader>gh :!git brws %<CR><CR>
+nnoremap <Leader>tt :!tig<CR><CR>
+nnoremap <Leader>tb :!tig blame %<CR>
 
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
-nnoremap <c-t> :!tig
-nnoremap <silent> <c-g> :!git brws %<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>

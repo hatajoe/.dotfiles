@@ -19,6 +19,8 @@ if [ "$(echo $(uname -s) | cut -c 1-5)" == 'Linux' ]; then
 fi
 
 brew install \
+	gcc \
+	ncurses \
 	openssl \
 	zsh \
 	git \
@@ -31,7 +33,6 @@ brew install \
 	direnv \
 	anyenv \
 	fzf \
-	gnu-sed \
 	az \
 	jq \
 	git-secrets \
@@ -41,8 +42,10 @@ brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
 
 if [ "$(uname)" == 'Darwin' ]; then
-	brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb \
+	brew install
+		https://raw.githubusercontent.com/Homebrew/homebrew-core/64555220bfbf4a25598523c2e4d3a232560eaad7/Formula/openssl.rb \
 		findutils \
+		gnu-sed \
 		reattach-to-user-namespace
 fi
 

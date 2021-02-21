@@ -120,6 +120,7 @@ if exists fzf; then
 	bindkey '^\' select-branch
 fi
 
+unsetopt BEEP
 alias v=vim
 alias vi=vim
 alias g=git
