@@ -24,7 +24,7 @@ export GOPATH=$HOME/go
 export GO111MODULE=auto
 
 export PATH=$GOPATH/bin:$PATH
-if [ "$(uname)" == 'Darwin' ]; then
+if [ `uname` = "Darwin" ]; then
 	export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 fi
