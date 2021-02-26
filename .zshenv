@@ -15,15 +15,20 @@ elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 	export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	if [ -d $HOME/.anyenv ] ; then
-    		export PATH="/home/linuxbrew/.linuxbrew/Cellar/anyenv/1.1.1/bin/:$PATH"
-    		eval "$(anyenv init - zsh)"
+		export PATH="/home/linuxbrew/.linuxbrew/Cellar/anyenv/1.1.1/bin/:$PATH"
+		eval "$(anyenv init - zsh)"
 	fi
 fi
 
 export GOPATH=$HOME/go
 export GO111MODULE=auto
+
 export PATH=$GOPATH/bin:$PATH
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+if [ "$(uname)" == 'Darwin' ]; then
+	export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+fi
+
 export AWS_PROFILE=saml
 
 eval "$(direnv hook zsh)"

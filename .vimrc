@@ -58,6 +58,8 @@ nnoremap <Leader>tb :!tig blame %<CR>
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
+nnoremap <c-t> :!tig
+nnoremap <silent> <c-g> :!git brws -R upstream %<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>
