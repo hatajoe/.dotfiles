@@ -80,6 +80,13 @@ fi
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ../../altercation/solarized ] ; then
 	mkdir -p ../../altercation
 	git clone git@github.com:altercation/solarized.git ../../altercation/
+elif [ "$(uname)" == 'Linux' ] && [ ! -e /usr/local/bin/win32yank.exe ]; then
+	wget https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+	unzip win32yank-x64.zip -d win32yank-x64
+	chmod +x win32yank-x64/win32yank.exe
+	sudo mv win32yank-x64/win32yank.exe /usr/local/bin/
+	rm win32yank-x64.zip
+	rm -rf win32yank-x64
 fi
 
 ln -s -f $PWD/.gitconfig $HOME/.gitconfig

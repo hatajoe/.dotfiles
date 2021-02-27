@@ -12,7 +12,6 @@ Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 syntax off
-set t_Co=0
 set visualbell t_vb=
 
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
@@ -22,6 +21,18 @@ if filereadable(expand(g:cwd.'/.golangci.yml'))
   let g:lsp_settings = {
   \  'golangci-lint-langserver': {'initialization_options': {'command': ['golangci-lint', 'run', '-c', g:cwd.'/.golangci.yml', '--out-format', 'json']}}
   \}
+endif
+
+if system('uname -a | grep microsoft') != ''
+  autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
+
+  function! Paste(mode)
+	let @" = system('win32yank.exe -o --lf')
+	return a:mode
+  endfunction
+
+  map <expr> p Paste('p')
+  map <expr> P Paste('P')
 endif
 
 "" set vim variables """"""""""""""""""""""""""""""""""""""""""""""""""""""

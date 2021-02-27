@@ -4,7 +4,7 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export EDITOR=vim
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 
 if [ `uname` = "Darwin" ]; then
 	if [ -d $HOME/.anyenv ] ; then
@@ -12,7 +12,7 @@ if [ `uname` = "Darwin" ]; then
 		eval "$(anyenv init - zsh)"
 	fi
 elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
-	export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+	export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
 	eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	if [ -d $HOME/.anyenv ] ; then
 		export PATH="/home/linuxbrew/.linuxbrew/Cellar/anyenv/1.1.1/bin/:$PATH"
