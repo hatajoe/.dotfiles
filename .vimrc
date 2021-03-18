@@ -12,6 +12,7 @@ Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 syntax off
+set t_Co=0
 set visualbell t_vb=
 
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
