@@ -109,7 +109,11 @@ if exists fzf; then
 
 	function select-branch() {
 		# git branch | fzf --no-sort +m --query "$LBUFFER" --prompt="Branch > " --info=hidden | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
-		git branch | fzf --no-sort +m | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+		if [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
+			git branch | fzf --no-sort +m | sed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+		else
+			git branch | fzf --no-sort +m | gsed -e "s/\* //g" | awk "{print $1}" | xargs git checkout
+		fi
             	zle accept-line
 	}
 

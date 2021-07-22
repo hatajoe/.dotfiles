@@ -20,6 +20,7 @@ elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 	fi
 fi
 
+export PATH=/usr/local/go/bin:$PATH
 export GOPATH=$HOME/go
 export GO111MODULE=auto
 

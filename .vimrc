@@ -12,10 +12,11 @@ Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 syntax off
+set t_Co=0
 set visualbell t_vb=
 
+let g:lsp_document_code_action_signs_enabled = 0
 let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
-
 let g:cwd = getcwd()
 if filereadable(expand(g:cwd.'/.golangci.yml'))
   let g:lsp_settings = {
@@ -70,7 +71,7 @@ nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
 nnoremap <c-t> :!tig
-nnoremap <silent> <c-g> :!git brws -R upstream %<CR>
+nnoremap <silent> <c-g> :!git brws %<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>
