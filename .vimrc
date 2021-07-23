@@ -11,7 +11,7 @@ Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
-syntax off
+syntax on
 set t_Co=0
 set visualbell t_vb=
 
