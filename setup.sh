@@ -29,15 +29,13 @@ brew install \
 	vim \
 	tmux \
 	tmux-xpanes \
-	tmuxinator \
 	direnv \
 	anyenv \
 	fzf \
 	az \
 	jq \
 	git-secrets \
-	tflint \
-	c-bata/kube-prompt/kube-prompt
+	tflint
 
 brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
@@ -53,7 +51,8 @@ if [ "$(uname)" == 'Darwin' ]; then
 		ed \
 		gawk \
 		gzip \
-		reattach-to-user-namespace
+		reattach-to-user-namespace \
+		ansifilter
 fi
 
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ~/.oh-my-zsh ] ; then
@@ -70,6 +69,11 @@ mkdir -p ~/.vim/undodir
 if [ ! -e $(anyenv root)/plugins/anyenv-tfenv-init ] ; then
 	mkdir -p $(anyenv root)/plugins
 	git clone https://github.com/rugamaga/anyenv-tfenv-init.git $(anyenv root)/plugins/anyenv-tfenv-init
+fi
+
+if [ ! -e ~/.tmux/plugins/tmp ] ; then
+	mkdir -p ~/.tmux/plugins
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 if [ ! -e $(anyenv root)/plugins/anyenv-update ] ; then
