@@ -65,6 +65,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 mkdir -p ~/.vim/directory
 mkdir -p ~/.vim/backupdir
 mkdir -p ~/.vim/undodir
+mkdir -p ~/.tmux/log
 
 if [ ! -e $(anyenv root)/plugins/anyenv-tfenv-init ] ; then
 	mkdir -p $(anyenv root)/plugins
