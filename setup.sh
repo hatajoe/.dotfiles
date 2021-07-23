@@ -35,7 +35,8 @@ brew install \
 	az \
 	jq \
 	git-secrets \
-	tflint
+	tflint \
+	ansifilter
 
 brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
@@ -51,8 +52,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 		ed \
 		gawk \
 		gzip \
-		reattach-to-user-namespace \
-		ansifilter
+		reattach-to-user-namespace
 fi
 
 if [ "$(uname)" == 'Darwin' ] && [ ! -e ~/.oh-my-zsh ] ; then
@@ -71,7 +71,7 @@ if [ ! -e $(anyenv root)/plugins/anyenv-tfenv-init ] ; then
 	git clone https://github.com/rugamaga/anyenv-tfenv-init.git $(anyenv root)/plugins/anyenv-tfenv-init
 fi
 
-if [ ! -e ~/.tmux/plugins/tmp ] ; then
+if [ ! -e ~/.tmux/plugins/tpm ] ; then
 	mkdir -p ~/.tmux/plugins
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
