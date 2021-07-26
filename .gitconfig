@@ -37,3 +37,7 @@
 	branch = cat
 [pull]
 	rebase = true
+[diff "sopsdiffer"]
+	textconv = sops -d
+[diff "vault"]
+  textconv = "ansible-vault view"
