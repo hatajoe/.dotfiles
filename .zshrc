@@ -7,7 +7,7 @@ export ZSH=${HOME}/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="ys"
-PROMPT='%{$terminfo[bold]$fg[grey]%}%* %%%{$reset_color%} '
+PROMPT='%{$terminfo[bold]$fg[white]%}%* %%%{$reset_color%} '
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

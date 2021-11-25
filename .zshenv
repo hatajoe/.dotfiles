@@ -4,7 +4,7 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export EDITOR=vim
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
 if [ `uname` = "Darwin" ]; then
 	if [ -d $HOME/.anyenv ] ; then
@@ -20,15 +20,14 @@ elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 	fi
 fi
 
-export PATH=/usr/local/go/bin:$PATH
-export GOPATH=$HOME/go
-export GO111MODULE=auto
-
-export PATH=$GOPATH/bin:$PATH
 if [ `uname` = "Darwin" ]; then
 	export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 	export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 fi
+
+export PATH=$HOME/go/bin:/usr/local/go/bin:$PATH
+
+export GOENV_LOCATION=$HOME/go/bin
 
 export AWS_PROFILE=saml
 

@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
@@ -35,6 +36,8 @@ if system('uname -a | grep microsoft') != ''
   map <expr> p Paste('p')
   map <expr> P Paste('P')
 endif
+
+autocmd BufWritePre * :FixWhitespace
 
 "" set vim variables """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
