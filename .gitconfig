@@ -15,7 +15,7 @@
 	ps = push
 	br = branch
 	ac = !git add -A && git commit
-	delete-merged-branches = !git branch --merged | grep -vE '^\\*|master$|develop$|deploy-.*$' | xargs -I % git branch -d %
+	delete-merged-branches = !git branch --merged | grep -vE '^\\*|main$|master$|develop$|deploy-.*$' | xargs -I % git branch -d %
 [push]
 	default = simple
 [submodule]

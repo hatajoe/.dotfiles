@@ -14,3 +14,4 @@ export PATH=$GOPATH/bin:$PATH
 . ~/.bashrc
 
 [[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] && . "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+export PATH=$PATH:~/.kube/plugins/jordanwilson230

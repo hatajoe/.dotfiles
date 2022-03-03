@@ -39,3 +39,4 @@ if [ -e $HOME/.env.secret ] ; then
 fi
 
 export FZF_DEFAULT_OPTS='--height 40% --reverse'
+export PATH=$PATH:~/.kube/plugins/jordanwilson230

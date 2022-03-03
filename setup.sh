@@ -36,7 +36,8 @@ brew install \
 	jq \
 	git-secrets \
 	tflint \
-	ansifilter
+	ansifilter \
+	aquaproj/aqua/aqua
 
 brew tap "rhysd/git-brws" "https://github.com/rhysd/git-brws"
 brew install git-brws
