@@ -16,14 +16,10 @@ syntax on
 set t_Co=0
 set visualbell t_vb=
 
+"" let g:lsp_log_verbose = 1
+"" let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_document_code_action_signs_enabled = 0
-let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
-let g:cwd = getcwd()
-if filereadable(expand(g:cwd.'/.golangci.yml'))
-  let g:lsp_settings = {
-  \  'golangci-lint-langserver': {'initialization_options': {'command': ['golangci-lint', 'run', '-c', g:cwd.'/.golangci.yml', '--out-format', 'json']}}
-  \}
-endif
+let g:lsp_settings_filetype_go = ['gopls']
 
 if system('uname -a | grep microsoft') != ''
   autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
@@ -73,8 +69,6 @@ nnoremap <Leader>tb :!tig blame %<CR>
 nnoremap <silent> <c-p> :Files<CR>
 nnoremap <silent> <c-h> :History<CR>
 nnoremap <silent> <c-k> :Buffers<CR>
-nnoremap <c-t> :!tig
-nnoremap <silent> <c-g> :!git brws %<CR>
 
 nnoremap <silent> <C-]> :LspDefinition<CR>
 nnoremap <silent> <C-\> :LspTypeDefinition<CR>

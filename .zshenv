@@ -18,6 +18,8 @@ elif [ `expr substr $(uname -s) 1 5` = "Linux" ]; then
 		export PATH="/home/linuxbrew/.linuxbrew/Cellar/anyenv/1.1.1/bin/:$PATH"
 		eval "$(anyenv init - zsh)"
 	fi
+	export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+	export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 fi
 
 if [ `uname` = "Darwin" ]; then
