@@ -124,6 +124,16 @@ if exists fzf; then
 	bindkey '^\' select-branch
 fi
 
+if exists saml2aws; then
+	function awslogin() {
+		saml2aws login --skip-prompt -a "$1" && export AWS_PROFILE="$1"
+	}
+
+	function awsconsole() {
+		awslogin "$1" && export AWS_PROFILE="$1" && saml2aws console -a "$1"
+	}
+fi
+
 unsetopt BEEP
 alias v=vim
 alias vi=vim

@@ -2,24 +2,22 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
 
 call plug#end()
 
-syntax on
-set t_Co=0
+syntax off
 set visualbell t_vb=
 
 "" let g:lsp_log_verbose = 1
 "" let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_document_code_action_signs_enabled = 0
-let g:lsp_settings_filetype_go = ['gopls']
 
 if system('uname -a | grep microsoft') != ''
   autocmd TextYankPost * call system('win32yank.exe -i --crlf', @")
@@ -52,7 +50,6 @@ set smartcase
 
 set laststatus=2
 set clipboard=unnamed
-set completeopt=menuone
 set omnifunc=lsp#complete
 
 set statusline=%F%m\ %=%l:%v\ %{&ff}
@@ -78,3 +75,5 @@ nnoremap <silent> <Leader>r :LspReferences<CR>
 nnoremap <silent> <Leader>i :LspImplementation<CR>
 nnoremap <silent> <Leader>f :LspDocumentFormat<CR>
 nnoremap <silent> <Leader>l :LspDocumentDiagnostics<CR>
+nnoremap <silent> <Leader>n :LspNextError<CR>
+nnoremap <silent> <Leader>p :LspPreviousError<CR>

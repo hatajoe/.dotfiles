@@ -44,4 +44,3 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse'
 
 export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH=$PATH:~/.kube/plugins/jordanwilson230
-export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
